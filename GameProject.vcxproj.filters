@@ -62,6 +62,9 @@
     <ClCompile Include="CharacterSprite.cpp">
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
+    <ClCompile Include="GameClock.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IsometricMap.hpp">
@@ -89,6 +92,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="CharacterSprite.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="GameClock.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

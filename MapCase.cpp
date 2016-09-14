@@ -1,6 +1,6 @@
 #include "MapCase.hpp"
 
-MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) : coord(x, y), _sprite(texture)
+MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) : humanCoord(x, y), coord(x, y), _sprite(texture)
 {
 	sf::Vector2u size = this->_sprite.getTexture()->getSize();
 	sf::Vector2f new_position(Tool::toWindowCoord(x, y, true));
@@ -45,21 +45,14 @@ sf::Color		MapCase::calcLightColor(const short &posX, const short &posY, const G
 	float			distX = 0.0f;
 	float			distY = 0.0f;
 
-	distX = (posX - light.coord.x);
-	distY = (posY - light.coord.y);
-
-	if (distX < 0) {
-		distX *= -1;
-	}
-	if (distY < 0) {
-		distY *= -1;
-	}
+	distX = Tool::abs(posX - light.coord.x);
+	distY = Tool::abs(posY - light.coord.y);
 
 	return sf::Color(
 		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
 		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
 		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
-		static_cast<unsigned char>(std::min(/*(distX + distY) < 10 ? 0 : */ 255 - (140 - ((distX + distY) * 7)), 255.0f))
+		static_cast<unsigned char>(std::min((distX + distY) < 5 ? 0 : 255 - (140 - ((distX + distY) * 7)), 255.0f))
 	);
 }
 

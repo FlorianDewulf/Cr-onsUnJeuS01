@@ -4,8 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include "MapCase.hpp"
 #include "GlobalLight.hpp"
+#include "Tool.hpp"
+#include "DataContainer.hpp"
 
 class MapCase;
+class DataContainer;
 
 class IsometricMap
 {

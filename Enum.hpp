@@ -5,5 +5,7 @@ enum KeyConstants {
 	BACKWARD,
 	LEFT,
 	RIGHT,
-	ESCAPE
+	ESCAPE,
+	PLUS,
+	MINUS
 };

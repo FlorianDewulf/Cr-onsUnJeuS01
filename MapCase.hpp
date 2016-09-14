@@ -27,6 +27,7 @@ public:
 
 	// Attributes
 public:
+	sf::Vector2i humanCoord;
 	sf::Vector2f coord;
 
 private:

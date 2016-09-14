@@ -1,8 +1,9 @@
 #include "DataContainer.hpp"
+#include <iostream>
 DataContainer *DataContainer::_instance;
 
 
-DataContainer::DataContainer()
+DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true)
 {
 }
 
@@ -15,13 +16,12 @@ DataContainer & DataContainer::operator=(const DataContainer &old_data)
 	return *this;
 }
 
-DataContainer::DataContainer(const DataContainer &old_data)
+DataContainer::DataContainer(const DataContainer &old_data) : clock(true)
 {
 	this->window = old_data.window;
 	this->light.coord = old_data.light.coord;
 	this->map = old_data.map;
 }
-
 
 DataContainer::~DataContainer()
 {
@@ -43,6 +43,7 @@ void		DataContainer::init(sf::RenderWindow * const new_window, const short &widt
 {
 	this->window = new_window;
 	this->map = new IsometricMap(width, height, texture);
+	this->keyboard = new KeyboardManager();
 	this->updateView();
 }
 
@@ -51,4 +52,37 @@ void DataContainer::updateView()
 	sf::View view = this->window->getView();
 	view.setCenter(Tool::toWindowCoord(this->light.coord.x, this->light.coord.y));
 	this->window->setView(view);
+
+	sf::Vector2i tmp_up_left = Tool::toDataCoord(view.getCenter().x - (view.getSize().x / 2), view.getCenter().y - (view.getSize().y / 2), false);
+	sf::Vector2i tmp_up_right = Tool::toDataCoord(view.getCenter().x + (view.getSize().x / 2), view.getCenter().y - (view.getSize().y / 2), false);
+	sf::Vector2i tmp_down_right = Tool::toDataCoord(view.getCenter().x + (view.getSize().x / 2), view.getCenter().y + (view.getSize().y / 2), false);
+	sf::Vector2i tmp_down_left = Tool::toDataCoord(view.getCenter().x - (view.getSize().x / 2), view.getCenter().y + (view.getSize().y / 2), false);
+
+	this->_minCoordBounds = sf::Vector2i(tmp_up_left.x - 1, tmp_up_right.y - 1);
+	this->_maxCoordBounds = sf::Vector2i(tmp_down_right.x + 1, tmp_down_left.y + 1);
+}
+
+void DataContainer::draw()
+{
+	this->window->clear();
+	this->keyboard->eventInterpreter();
+	this->updateView();
+	this->map->renderMap(*(this->window), this->light);
+	this->window->draw(this->main_character);
+
+	if (this->clock.isDebugEnable()) {
+		this->window->draw(this->clock);
+	}
+
+	this->window->display();
+}
+
+sf::Vector2i DataContainer::getMinCoordBound() const
+{
+	return this->_minCoordBounds;
+}
+
+sf::Vector2i DataContainer::getMaxCoordBound() const
+{
+	return this->_maxCoordBounds;
 }

@@ -11,12 +11,16 @@ KeyboardManager::KeyboardManager()
 	this->input_mapping[sf::Keyboard::D] = RIGHT;
 	this->input_mapping[sf::Keyboard::Right] = RIGHT;
 	this->input_mapping[sf::Keyboard::Escape] = ESCAPE;
+	this->input_mapping[sf::Keyboard::Add] = PLUS;
+	this->input_mapping[sf::Keyboard::Subtract] = MINUS;
 
 	this->process_method_map[FORWARD] = &KeyboardManager::moveForward;
 	this->process_method_map[BACKWARD] = &KeyboardManager::moveBackward;
 	this->process_method_map[LEFT] = &KeyboardManager::moveLeft;
 	this->process_method_map[RIGHT] = &KeyboardManager::moveRight;
 	this->process_method_map[ESCAPE] = &KeyboardManager::closeWindow;
+	this->process_method_map[PLUS] = &KeyboardManager::zoom;
+	this->process_method_map[MINUS] = &KeyboardManager::unzoom;
 }
 
 KeyboardManager::~KeyboardManager()
@@ -58,31 +62,45 @@ void KeyboardManager::eventInterpreter()
  * Method for the method pointer
  */
 
-void KeyboardManager::moveForward(void *) const
+void KeyboardManager::moveForward(void *data) const
 {
 	DataContainer::getInstance()->light.coord.y -= 0.01f;
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
-void KeyboardManager::moveLeft(void *) const
+void KeyboardManager::moveLeft(void *data) const
 {
 	DataContainer::getInstance()->light.coord.x -= 0.01f;
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
-void KeyboardManager::moveBackward(void *) const
+void KeyboardManager::moveBackward(void *data) const
 {
 	DataContainer::getInstance()->light.coord.y += 0.01f;
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
-void KeyboardManager::moveRight(void *) const
+void KeyboardManager::moveRight(void *data) const
 {
 	DataContainer::getInstance()->light.coord.x += 0.01f;
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
-void KeyboardManager::closeWindow(void *) const
+void KeyboardManager::closeWindow(void *data) const
 {
 	DataContainer::getInstance()->window->close();
+}
+
+void KeyboardManager::zoom(void *data) const
+{
+	sf::View v = DataContainer::getInstance()->window->getView();
+	v.zoom(0.9f);
+	DataContainer::getInstance()->window->setView(v);
+}
+
+void KeyboardManager::unzoom(void *data) const
+{
+	sf::View v = DataContainer::getInstance()->window->getView();
+	v.zoom(1.1f);
+	DataContainer::getInstance()->window->setView(v);
 }

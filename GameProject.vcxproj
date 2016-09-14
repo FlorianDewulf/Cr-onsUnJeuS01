@@ -164,6 +164,7 @@
   <ItemGroup>
     <ClCompile Include="CharacterSprite.cpp" />
     <ClCompile Include="DataContainer.cpp" />
+    <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GlobalLight.cpp" />
     <ClCompile Include="IsometricMap.cpp" />
     <ClCompile Include="KeyboardManager.cpp" />
@@ -177,6 +178,7 @@
   <ItemGroup>
     <ClInclude Include="CharacterSprite.hpp" />
     <ClInclude Include="DataContainer.hpp" />
+    <ClInclude Include="GameClock.hpp" />
     <ClInclude Include="GlobalLight.hpp" />
     <ClInclude Include="Enum.hpp" />
     <ClInclude Include="IsometricMap.hpp" />

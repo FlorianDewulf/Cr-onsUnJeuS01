@@ -1,5 +1,4 @@
 #include "IsometricMap.hpp"
-#include <iostream>
 
 IsometricMap::IsometricMap(const short &base_width, const short &base_height, const sf::Texture &texture)
 	: _width(base_width), _height(base_height), _shadow_tile(sf::Quads, 4)
@@ -21,7 +20,9 @@ IsometricMap::~IsometricMap()
 void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 {
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
-		window.draw((**it));
+		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
+			window.draw((**it));
+		}
 	}
 }
 

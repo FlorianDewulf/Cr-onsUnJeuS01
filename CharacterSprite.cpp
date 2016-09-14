@@ -1,5 +1,4 @@
 #include "CharacterSprite.hpp"
-#include <iostream>
 
 CharacterSprite::CharacterSprite() : rect(sf::Vector2f(5, 50))
 {

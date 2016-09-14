@@ -26,6 +26,8 @@ private:
 	void moveBackward(void *) const;
 	void moveRight(void *) const;
 	void closeWindow(void *) const;
+	void zoom(void * data) const;
+	void unzoom(void * data) const;
 
 private:
 	std::map<sf::Keyboard::Key, KeyConstants> input_mapping;
