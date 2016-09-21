@@ -66,25 +66,25 @@ void KeyboardManager::eventInterpreter()
 void KeyboardManager::moveForward(void *data) const
 {
 	DataContainer::getInstance()->light.coord.y -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
+	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveLeft(void *data) const
 {
 	DataContainer::getInstance()->light.coord.x -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
+	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveBackward(void *data) const
 {
 	DataContainer::getInstance()->light.coord.y += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
+	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveRight(void *data) const
 {
 	DataContainer::getInstance()->light.coord.x += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
+	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::closeWindow(void *data) const

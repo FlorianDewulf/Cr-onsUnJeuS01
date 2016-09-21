@@ -22,8 +22,23 @@ void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
 		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
 			window.draw((**it));
+
+			if (DataContainer::getInstance()->main_character->getCurrentCase()->id == (*it)->id) {
+				DataContainer::getInstance()->window->draw(*DataContainer::getInstance()->main_character);
+			}
 		}
 	}
+}
+
+MapCase *IsometricMap::findTile(const sf::Vector2f &position)
+{
+	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
+		if ((int)(*it)->coord.x == (int)position.x && (int)(*it)->coord.y == (int)position.y) {
+			return *it;
+		}
+	}
+
+	return NULL;
 }
 
 short IsometricMap::getWidth() const

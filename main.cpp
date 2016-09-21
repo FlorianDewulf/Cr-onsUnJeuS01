@@ -8,6 +8,9 @@
 #include "KeyboardManager.hpp"
 #include "Tool.hpp"
 
+// TMP
+#include <cstdlib>
+
 int main()
 {
 	// Create the main window
@@ -19,8 +22,11 @@ int main()
 		return EXIT_FAILURE;
 	}
 
+	// TMP
+	srand(time(NULL));
+
 	DataContainer *data = DataContainer::getInstance();
-	data->init(&window, 25, 25, texture);
+	data->init(&window, 15, 15, texture);
 
 	while (window.isOpen())
 	{

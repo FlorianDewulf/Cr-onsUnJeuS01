@@ -17,6 +17,7 @@ public:
 	~IsometricMap();
 
 	void renderMap(sf::RenderWindow &, const GlobalLight &);
+	MapCase *findTile(const sf::Vector2f &);
 
 	short getWidth() const;
 	void setWidth(const short &);

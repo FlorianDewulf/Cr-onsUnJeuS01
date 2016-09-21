@@ -44,6 +44,7 @@ void		DataContainer::init(sf::RenderWindow * const new_window, const short &widt
 	this->window = new_window;
 	this->map = new IsometricMap(width, height, texture);
 	this->keyboard = new KeyboardManager();
+	this->main_character = new CharacterSprite();
 	this->updateView();
 }
 
@@ -66,9 +67,9 @@ void DataContainer::draw()
 {
 	this->window->clear();
 	this->keyboard->eventInterpreter();
+	this->main_character->findCase();
 	this->updateView();
 	this->map->renderMap(*(this->window), this->light);
-	this->window->draw(this->main_character);
 
 	if (this->clock.isDebugEnable()) {
 		this->window->draw(this->clock);

@@ -1,6 +1,11 @@
 #include "MapCase.hpp"
+// TMP
+#include <cstdlib>
+#include <iostream>
 
-MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) : humanCoord(x, y), coord(x, y), _sprite(texture)
+unsigned short MapCase::id_count = 1;
+
+MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) : id(MapCase::id_count++), humanCoord(x, y), coord(x, y), _sprite(texture), depth(0)
 {
 	sf::Vector2u size = this->_sprite.getTexture()->getSize();
 	sf::Vector2f new_position(Tool::toWindowCoord(x, y, true));
@@ -8,6 +13,9 @@ MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) :
 	this->_sprite.setRotation(ROTATION_TILE);
 	this->_sprite.setScale(sf::Vector2f(100.f / (float)size.x, 100.f / (float)size.y));
 	this->_sprite.setPosition(new_position);
+
+	// TMP - waiting loading map
+	this->depth = rand() % 11;
 }
 
 MapCase::~MapCase()
@@ -18,6 +26,7 @@ void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	sf::Transform transform;
 	transform.scale(1.f, RESIZE_TILE_Y);
+	transform.translate(0, - this->depth * 5);
 
 	target.draw(this->_sprite, transform);
 
@@ -29,6 +38,16 @@ void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 		DataContainer::getInstance()->light,
 		transform
 	);
+
+	if (this->depth != 0) {
+		transform.scale(1, 1);
+		this->addDepthTile(
+			target,
+			Tool::toWindowCoord(this->coord.x, this->coord.y, true),
+			DataContainer::getInstance()->map->getShadowTile(),
+			transform
+		);
+	}
 }
 
 sf::Sprite MapCase::getSprite() const
@@ -73,4 +92,26 @@ void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const s
 
 		window.draw(shadowTile, transform);
 	}
+}
+
+void MapCase::addDepthTile(sf::RenderTarget &window, const sf::Vector2f &position, sf::VertexArray &tile, const sf::Transform &transform) const
+{
+	tile[0].color = sf::Color::Black;
+	tile[1].color = sf::Color::Black;
+	tile[2].color = sf::Color::Black;
+	tile[3].color = sf::Color::Black;
+
+	tile[0].position = sf::Vector2f(position.x - (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height) / 2);
+	tile[1].position = sf::Vector2f(position.x - 1, position.y + (this->_sprite.getGlobalBounds().height));
+	tile[2].position = sf::Vector2f(position.x - 1, position.y + (this->_sprite.getGlobalBounds().height) + (this->depth * 5));
+	tile[3].position = sf::Vector2f(position.x - (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height / 2) + (this->depth * 5));
+
+	window.draw(tile, transform);
+
+	tile[0].position = sf::Vector2f(position.x + 1, position.y + this->_sprite.getGlobalBounds().height);
+	tile[1].position = sf::Vector2f(position.x + (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height / 2));
+	tile[2].position = sf::Vector2f(position.x + (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height / 2) + (this->depth * 5));
+	tile[3].position = sf::Vector2f(position.x + 1, position.y + this->_sprite.getGlobalBounds().height + (this->depth * 5));
+
+	window.draw(tile, transform);
 }

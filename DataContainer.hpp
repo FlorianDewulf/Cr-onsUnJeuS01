@@ -1,15 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "CharacterSprite.hpp"
+#include "GameClock.hpp"
 #include "GlobalLight.hpp"
 #include "IsometricMap.hpp"
-#include "CharacterSprite.hpp"
 #include "KeyboardManager.hpp"
-#include "GameClock.hpp"
 
+class CharacterSprite;
+class GameClock;
 class GlobalLight;
 class IsometricMap;
 class KeyboardManager;
-class GameClock;
 
 class DataContainer
 {
@@ -27,7 +28,7 @@ public:
 	sf::RenderWindow		*window;
 	GlobalLight				light;
 	IsometricMap			*map;
-	CharacterSprite			main_character;
+	CharacterSprite			*main_character;
 	KeyboardManager			*keyboard;
 	GameClock				clock;
 

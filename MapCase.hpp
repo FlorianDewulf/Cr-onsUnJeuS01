@@ -19,6 +19,7 @@ public:
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
 	void addShadowTile(sf::RenderTarget &, const sf::Vector2<const short> &, const sf::Vector2f &, sf::VertexArray &, const GlobalLight &, const sf::Transform &) const;
+	void addDepthTile(sf::RenderTarget &, const sf::Vector2f &, sf::VertexArray &, const sf::Transform &) const;
 
 	// GETTER & SETTER
 public:
@@ -27,8 +28,12 @@ public:
 
 	// Attributes
 public:
+	static unsigned short	id_count;
+
+	const unsigned short id;
 	sf::Vector2i humanCoord;
 	sf::Vector2f coord;
+	char depth;
 
 private:
 	sf::Sprite _sprite;
