@@ -20,7 +20,7 @@ int main()
 	}
 
 	DataContainer *data = DataContainer::getInstance();
-	data->init(&window, 15, 15, texture);
+	data->init(&window, 25, 25, texture);
 
 	while (window.isOpen())
 	{

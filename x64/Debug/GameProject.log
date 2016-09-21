@@ -1,14 +1,2 @@
-﻿  Tool.cpp
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\tool.cpp(26): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\tool.cpp(31): warning C4244: 'return' : conversion de 'double' en 'float', perte possible de données
-  MapCase.cpp
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\mapcase.cpp(26): warning C4244: 'argument' : conversion de 'const float' en 'const short', perte possible de données
-  main.cpp
-  KeyboardManager.cpp
-  IsometricMap.cpp
-  GlobalLight.cpp
-  GameClock.cpp
-  DataContainer.cpp
-  CharacterSprite.cpp
-  Génération de code en cours...
+﻿  main.cpp
   GameProject.vcxproj -> F:\Shared files for Virtualbox\GameProject\GameProject\x64\Debug\GameProject.exe

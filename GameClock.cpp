@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-GameClock::GameClock(const bool debug) : _debug(debug), _time(0), _frame(0)
+GameClock::GameClock(const bool debug) : _debug(debug), _time(0), _frame(0), _lastTotalFrame(std::numeric_limits<int>::max())
 {
 	if (!this->_font.loadFromFile("arial.ttf")) {
 		std::cerr << "Error while opening the font for debug" << std::endl;
@@ -28,6 +28,7 @@ void		GameClock::update(sf::Clock &clock) {
 
 	if (this->_time > 1.0f) {
 		this->_text.setString(std::to_string(this->_frame) + "FPS");
+		this->_lastTotalFrame = std::max(this->_frame, 1);
 		this->_frame = 0;
 		this->_time = 0.0f;
 	}
@@ -36,6 +37,16 @@ void		GameClock::update(sf::Clock &clock) {
 bool GameClock::isDebugEnable() const
 {
 	return this->_debug;
+}
+
+int GameClock::getFrameNumber() const
+{
+	return this->_frame;
+}
+
+int GameClock::getLastTotalFrame() const
+{
+	return this->_lastTotalFrame;
 }
 
 void GameClock::draw(sf::RenderTarget & target, sf::RenderStates states) const

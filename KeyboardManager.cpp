@@ -1,4 +1,5 @@
 #include "KeyboardManager.hpp"
+#include <iostream>
 
 KeyboardManager::KeyboardManager()
 {
@@ -64,25 +65,25 @@ void KeyboardManager::eventInterpreter()
 
 void KeyboardManager::moveForward(void *data) const
 {
-	DataContainer::getInstance()->light.coord.y -= 0.01f;
+	DataContainer::getInstance()->light.coord.y -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveLeft(void *data) const
 {
-	DataContainer::getInstance()->light.coord.x -= 0.01f;
+	DataContainer::getInstance()->light.coord.x -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveBackward(void *data) const
 {
-	DataContainer::getInstance()->light.coord.y += 0.01f;
+	DataContainer::getInstance()->light.coord.y += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
 void KeyboardManager::moveRight(void *data) const
 {
-	DataContainer::getInstance()->light.coord.x += 0.01f;
+	DataContainer::getInstance()->light.coord.x += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	DataContainer::getInstance()->main_character.move(DataContainer::getInstance()->light.coord);
 }
 
@@ -94,13 +95,13 @@ void KeyboardManager::closeWindow(void *data) const
 void KeyboardManager::zoom(void *data) const
 {
 	sf::View v = DataContainer::getInstance()->window->getView();
-	v.zoom(0.9f);
+	v.zoom(std::min(0.98f, 0.98f + (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame())));
 	DataContainer::getInstance()->window->setView(v);
 }
 
 void KeyboardManager::unzoom(void *data) const
 {
 	sf::View v = DataContainer::getInstance()->window->getView();
-	v.zoom(1.1f);
+	v.zoom(1.02f + (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame()));
 	DataContainer::getInstance()->window->setView(v);
 }
