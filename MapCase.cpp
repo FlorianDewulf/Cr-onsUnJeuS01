@@ -21,14 +21,14 @@ void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 	target.draw(this->_sprite, transform);
 
-	this->addShadowTile(
+	/*this->addShadowTile(
 		target,
 		sf::Vector2<const short>(this->coord.x, this->coord.y),
 		Tool::toWindowCoord(this->coord.x, this->coord.y, true),
 		DataContainer::getInstance()->map->getShadowTile(),
 		DataContainer::getInstance()->light,
 		transform
-	);
+	);*/
 }
 
 sf::Sprite MapCase::getSprite() const
@@ -41,23 +41,8 @@ void MapCase::setSprite(const sf::Sprite &new_sprite)
 	this->_sprite = new_sprite;
 }
 
-sf::Color		MapCase::calcLightColor(const short &posX, const short &posY, const GlobalLight &light) const {
-	float			distX = 0.0f;
-	float			distY = 0.0f;
 
-	distX = Tool::abs(posX - light.coord.x);
-	distY = Tool::abs(posY - light.coord.y);
-
-	return sf::Color(
-		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
-		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
-		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
-		static_cast<unsigned char>(std::min((distX + distY) < 5 ? 0 : 255 - (140 - ((distX + distY) * 7)), 255.0f))
-	);
-}
-
-
-void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const short> &real_position, const sf::Vector2f &position, sf::VertexArray &shadowTile, const GlobalLight &light, const sf::Transform &transform) const
+/*void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const short> &real_position, const sf::Vector2f &position, sf::VertexArray &shadowTile, const GlobalLight &light, const sf::Transform &transform) const
 {
 	shadowTile[0].color = this->calcLightColor(real_position.x, real_position.y, light);
 	shadowTile[1].color = this->calcLightColor(real_position.x + 1, real_position.y, light);
@@ -73,4 +58,4 @@ void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const s
 
 		window.draw(shadowTile, transform);
 	}
-}
+}*/

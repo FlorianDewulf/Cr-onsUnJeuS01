@@ -14,11 +14,11 @@ public:
 	MapCase(const short &, const short &, const sf::Texture &);
 	~MapCase();
 
-	sf::Color calcLightColor(const short & posX, const short & posY, const GlobalLight & light) const;
+	//sf::Color calcLightColor(const short & posX, const short & posY, const GlobalLight & light) const;
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	void addShadowTile(sf::RenderTarget &, const sf::Vector2<const short> &, const sf::Vector2f &, sf::VertexArray &, const GlobalLight &, const sf::Transform &) const;
+	//void addShadowTile(sf::RenderTarget &, const sf::Vector2<const short> &, const sf::Vector2f &, sf::VertexArray &, const GlobalLight &, const sf::Transform &) const;
 
 	// GETTER & SETTER
 public:

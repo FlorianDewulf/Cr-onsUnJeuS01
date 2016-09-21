@@ -3,14 +3,14 @@
 DataContainer *DataContainer::_instance;
 
 
-DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true)
+DataContainer::DataContainer() : window(NULL), light(new GlobalLight()), map(NULL), keyboard(NULL), clock(true)
 {
 }
 
 DataContainer & DataContainer::operator=(const DataContainer &old_data)
 {
 	this->window = old_data.window;
-	this->light.coord = old_data.light.coord;
+	this->light->coord = old_data.light->coord;
 	this->map = old_data.map;
 
 	return *this;
@@ -19,7 +19,7 @@ DataContainer & DataContainer::operator=(const DataContainer &old_data)
 DataContainer::DataContainer(const DataContainer &old_data) : clock(true)
 {
 	this->window = old_data.window;
-	this->light.coord = old_data.light.coord;
+	this->light->coord = old_data.light->coord;
 	this->map = old_data.map;
 }
 
@@ -50,7 +50,7 @@ void		DataContainer::init(sf::RenderWindow * const new_window, const short &widt
 void DataContainer::updateView()
 {
 	sf::View view = this->window->getView();
-	view.setCenter(Tool::toWindowCoord(this->light.coord.x, this->light.coord.y));
+	view.setCenter(Tool::toWindowCoord(this->light->coord.x, this->light->coord.y));
 	this->window->setView(view);
 
 	sf::Vector2i tmp_up_left = Tool::toDataCoord(view.getCenter().x - (view.getSize().x / 2), view.getCenter().y - (view.getSize().y / 2), false);
@@ -67,7 +67,8 @@ void DataContainer::draw()
 	this->window->clear();
 	this->keyboard->eventInterpreter();
 	this->updateView();
-	this->map->renderMap(*(this->window), this->light);
+	this->map->renderMap(*(this->window));
+	this->light->drawShadow();
 	this->window->draw(this->main_character);
 
 	if (this->clock.isDebugEnable()) {

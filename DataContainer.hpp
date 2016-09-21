@@ -25,7 +25,7 @@ public:
 
 public:
 	sf::RenderWindow		*window;
-	GlobalLight				light;
+	GlobalLight				*light;
 	IsometricMap			*map;
 	CharacterSprite			main_character;
 	KeyboardManager			*keyboard;

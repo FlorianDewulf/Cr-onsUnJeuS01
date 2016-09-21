@@ -1,7 +1,7 @@
 #include "IsometricMap.hpp"
 
 IsometricMap::IsometricMap(const short &base_width, const short &base_height, const sf::Texture &texture)
-	: _width(base_width), _height(base_height), _shadow_tile(sf::Quads, 4)
+	: _width(base_width), _height(base_height)
 {
 	for (unsigned short y = 0; y < base_height; ++y) {
 		for (unsigned short x = 0; x < base_width; ++x) {
@@ -17,7 +17,7 @@ IsometricMap::~IsometricMap()
 	}
 }
 
-void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
+void IsometricMap::renderMap(sf::RenderWindow &window)
 {
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
 		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
@@ -44,9 +44,4 @@ short IsometricMap::getHeight() const
 void IsometricMap::setHeight(const short &new_height)
 {
 	this->_width = new_height;
-}
-
-sf::VertexArray & IsometricMap::getShadowTile()
-{
-	return this->_shadow_tile;
 }
