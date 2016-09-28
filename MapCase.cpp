@@ -5,7 +5,8 @@
 
 unsigned short MapCase::id_count = 1;
 
-MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture) : id(MapCase::id_count++), humanCoord(x, y), coord(x, y), _sprite(texture), depth(0)
+MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture)
+	: id(MapCase::id_count++), humanCoord(x, y), coord(x, y), _sprite(texture), depth(0), _up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
 {
 	sf::Vector2u size = this->_sprite.getTexture()->getSize();
 	sf::Vector2f new_position(Tool::toWindowCoord(x, y, true));
@@ -60,6 +61,51 @@ void MapCase::setSprite(const sf::Sprite &new_sprite)
 	this->_sprite = new_sprite;
 }
 
+void MapCase::setUpCase(MapCase *_case)
+{
+	this->_up_case = _case;
+}
+
+void MapCase::setLeftCase(MapCase *_case)
+{
+	this->_left_case = _case;
+}
+
+void MapCase::setRightCase(MapCase *_case)
+{
+	this->_right_case = _case;
+}
+
+void MapCase::setBottomCase(MapCase *_case)
+{
+	this->_bottom_case = _case;
+}
+
+MapCase * MapCase::up() const
+{
+	return this->_up_case;
+}
+
+MapCase * MapCase::left() const
+{
+	return this->_left_case;
+}
+
+MapCase * MapCase::right() const
+{
+	return this->_right_case;
+}
+
+MapCase * MapCase::bottom() const
+{
+	return this->_bottom_case;
+}
+
+bool MapCase::isFullyLinked() const
+{
+	return this->_bottom_case && this->_left_case && this->_right_case && this->_up_case;
+}
+
 sf::Color		MapCase::calcLightColor(const short &posX, const short &posY, const GlobalLight &light) const {
 	float			distX = 0.0f;
 	float			distY = 0.0f;
@@ -73,6 +119,32 @@ sf::Color		MapCase::calcLightColor(const short &posX, const short &posY, const G
 		static_cast<unsigned char>(std::max(125 - ((distX + distY) * 15), 0.0f)),
 		static_cast<unsigned char>(std::min((distX + distY) < 5 ? 0 : 255 - (140 - ((distX + distY) * 7)), 255.0f))
 	);
+}
+
+bool MapCase::linkCases(MapCase *case_one, MapCase *case_two)
+{
+	if (case_one->humanCoord.x == case_two->humanCoord.x && case_one->humanCoord.y == case_two->humanCoord.y - 1) {
+		case_one->setBottomCase(case_two);
+		case_two->setUpCase(case_one);
+
+		return true;
+	} else if (case_one->humanCoord.x == case_two->humanCoord.x && case_one->humanCoord.y == case_two->humanCoord.y + 1) {
+		case_one->setUpCase(case_two);
+		case_two->setBottomCase(case_one);
+
+		return true;
+	} else if (case_one->humanCoord.x == case_two->humanCoord.x - 1 && case_one->humanCoord.y == case_two->humanCoord.y) {
+		case_one->setRightCase(case_two);
+		case_two->setLeftCase(case_one);
+
+		return true;
+	} else if (case_one->humanCoord.x == case_two->humanCoord.x + 1 && case_one->humanCoord.y == case_two->humanCoord.y) {
+		case_one->setLeftCase(case_two);
+		case_two->setRightCase(case_one);
+
+		return true;
+	}
+	return false;
 }
 
 

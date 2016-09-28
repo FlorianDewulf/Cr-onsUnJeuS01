@@ -7,12 +7,12 @@ public:
 	GameClock(const bool);
 	~GameClock();
 
-	void update(sf::Clock & clock);
+	void		update(sf::Clock & clock);
 
-	bool isDebugEnable() const;
-	int getFrameNumber() const;
+	bool		isDebugEnable() const;
+	int			getFrameNumber() const;
 
-	int getLastTotalFrame() const;
+	int			getLastTotalFrame() const;
 
 private:
 	virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const;

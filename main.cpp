@@ -36,6 +36,13 @@ int main()
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
+				data->save_manager->saveMap(data->map);
+				data->save_manager->closeFile();
+
+				data->load_manager->openFile("save.lol");
+				data->load_manager->loadMap();
+				data->load_manager->closeFile();
+
 				window.close();
 			}
 

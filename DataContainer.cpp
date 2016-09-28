@@ -3,7 +3,7 @@
 DataContainer *DataContainer::_instance;
 
 
-DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true)
+DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true), save_manager(new SaveManager()), load_manager(new LoadManager())
 {
 }
 
@@ -46,6 +46,7 @@ void		DataContainer::init(sf::RenderWindow * const new_window, const short &widt
 	this->keyboard = new KeyboardManager();
 	this->main_character = new CharacterSprite();
 	this->updateView();
+	this->save_manager->openFile("save.lol");
 }
 
 void DataContainer::updateView()

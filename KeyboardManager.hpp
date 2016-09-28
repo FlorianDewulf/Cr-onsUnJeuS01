@@ -14,24 +14,24 @@ public:
 	KeyboardManager();
 	~KeyboardManager();
 
-	void eventStorage(const sf::Event &);
-	void eventInterpreter();
+	void		eventStorage(const sf::Event &);
+	void		eventInterpreter();
 
 /**
  * Method for the method pointer
  */
 private:
-	void moveForward(void *) const;
-	void moveLeft(void *) const;
-	void moveBackward(void *) const;
-	void moveRight(void *) const;
-	void closeWindow(void *) const;
-	void zoom(void * data) const;
-	void unzoom(void * data) const;
+	void		moveForward(void *) const;
+	void		moveLeft(void *) const;
+	void		moveBackward(void *) const;
+	void		moveRight(void *) const;
+	void		closeWindow(void *) const;
+	void		zoom(void * data) const;
+	void		unzoom(void * data) const;
 
 private:
-	std::map<sf::Keyboard::Key, KeyConstants> input_mapping;
-	std::list<KeyConstants> actions;
+	std::map<sf::Keyboard::Key, KeyConstants>						input_mapping;
+	std::list<KeyConstants>											actions;
 	std::map<KeyConstants, void (KeyboardManager::*)(void *) const> process_method_map;
 };
 

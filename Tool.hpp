@@ -13,21 +13,21 @@
 namespace Tool
 {
 	// Coord translation
-	sf::Vector2f toWindowCoord(const float &x, const float &y, const bool with_transformation = false);
-	sf::Vector2i toDataCoord(const float &x, const float &y, const bool);
+	sf::Vector2f	toWindowCoord(const float &x, const float &y, const bool with_transformation = false);
+	sf::Vector2i	toDataCoord(const float &x, const float &y, const bool);
 
 	// Angle conversion
-	float toDegree(const float &);
-	float toRad(const float &);
+	float			toDegree(const float &);
+	float			toRad(const float &);
 
 	// Numeric operations
-	float abs(const float &);
+	float			abs(const float &);
 
 	// Calculate
-	sf::Vector2f calcSizeAfterRotation(const float &, const float &, const float &);
-	float calcWidthAfterRotation(const float &, const float &, const float &);
-	float calcHeightAfterRotation(const float &, const float &, const float &);
+	sf::Vector2f	calcSizeAfterRotation(const float &, const float &, const float &);
+	float			calcWidthAfterRotation(const float &, const float &, const float &);
+	float			calcHeightAfterRotation(const float &, const float &, const float &);
 
 	// Hitbox
-	bool isInBoundDataCoord(const sf::Vector2i &, const sf::Vector2i &, const sf::Vector2i &);
+	bool			isInBoundDataCoord(const sf::Vector2i &, const sf::Vector2i &, const sf::Vector2i &);
 };
