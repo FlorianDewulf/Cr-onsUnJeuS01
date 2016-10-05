@@ -28,6 +28,11 @@ private:
 	void		closeWindow(void *) const;
 	void		zoom(void * data) const;
 	void		unzoom(void * data) const;
+	void		fire(void * data) const;
+	void		ice(void * data) const;
+	void		rocket(void * data) const;
+	void		slime(void * data) const;
+
 
 private:
 	std::map<sf::Keyboard::Key, KeyConstants>						input_mapping;

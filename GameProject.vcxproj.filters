@@ -86,6 +86,12 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Fichiers sources\Tools</Filter>
     </ClCompile>
+    <ClCompile Include="MusicManager.cpp">
+      <Filter>Fichiers sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="SoundManager.cpp">
+      <Filter>Fichiers sources\Core</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IsometricMap.hpp">
@@ -131,6 +137,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="TextureManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="MusicManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="SoundManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

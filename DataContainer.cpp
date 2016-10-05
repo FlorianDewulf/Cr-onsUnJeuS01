@@ -45,10 +45,42 @@ void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase
 	this->map = new IsometricMap(list);
 	this->keyboard = new KeyboardManager();
 	this->main_character = new CharacterSprite();
-	this->updateView();
+	this->music_manager.play(MUSIC_DEFAULT);
+	this->_updateView();
 }
 
-void DataContainer::updateView()
+void DataContainer::draw()
+{
+	this->window->clear();
+	this->map->renderMap(*(this->window), this->light);
+
+	if (this->clock.isDebugEnable()) {
+		this->window->draw(this->clock);
+	}
+
+	this->window->display();
+}
+
+void DataContainer::update()
+{
+	this->keyboard->eventInterpreter();
+	this->main_character->findCase();
+	this->_updateView();
+	this->music_manager.update();
+	this->sound_manager.update();
+}
+
+sf::Vector2i DataContainer::getMinCoordBound() const
+{
+	return this->_minCoordBounds;
+}
+
+sf::Vector2i DataContainer::getMaxCoordBound() const
+{
+	return this->_maxCoordBounds;
+}
+
+void DataContainer::_updateView()
 {
 	sf::View view = this->window->getView();
 	view.setCenter(Tool::toWindowCoord(this->light.coord.x, this->light.coord.y));
@@ -61,29 +93,4 @@ void DataContainer::updateView()
 
 	this->_minCoordBounds = sf::Vector2i(tmp_up_left.x - 1, tmp_up_right.y - 1);
 	this->_maxCoordBounds = sf::Vector2i(tmp_down_right.x + 1, tmp_down_left.y + 1);
-}
-
-void DataContainer::draw()
-{
-	this->window->clear();
-	this->keyboard->eventInterpreter();
-	this->main_character->findCase();
-	this->updateView();
-	this->map->renderMap(*(this->window), this->light);
-
-	if (this->clock.isDebugEnable()) {
-		this->window->draw(this->clock);
-	}
-
-	this->window->display();
-}
-
-sf::Vector2i DataContainer::getMinCoordBound() const
-{
-	return this->_minCoordBounds;
-}
-
-sf::Vector2i DataContainer::getMaxCoordBound() const
-{
-	return this->_maxCoordBounds;
 }

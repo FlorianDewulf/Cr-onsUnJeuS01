@@ -38,6 +38,7 @@ int main()
 			data->keyboard->eventStorage(event);
 		}
 
+		data->update();
 		data->draw();
 	}
 	return EXIT_SUCCESS;

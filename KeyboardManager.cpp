@@ -14,6 +14,10 @@ KeyboardManager::KeyboardManager()
 	this->input_mapping[sf::Keyboard::Escape] = ESCAPE;
 	this->input_mapping[sf::Keyboard::Add] = PLUS;
 	this->input_mapping[sf::Keyboard::Subtract] = MINUS;
+	this->input_mapping[sf::Keyboard::Numpad1] = FIRE;
+	this->input_mapping[sf::Keyboard::Numpad2] = ICE;
+	this->input_mapping[sf::Keyboard::Numpad3] = ROCKET;
+	this->input_mapping[sf::Keyboard::Numpad4] = SLIME;
 
 	this->process_method_map[FORWARD] = &KeyboardManager::moveForward;
 	this->process_method_map[BACKWARD] = &KeyboardManager::moveBackward;
@@ -22,6 +26,10 @@ KeyboardManager::KeyboardManager()
 	this->process_method_map[ESCAPE] = &KeyboardManager::closeWindow;
 	this->process_method_map[PLUS] = &KeyboardManager::zoom;
 	this->process_method_map[MINUS] = &KeyboardManager::unzoom;
+	this->process_method_map[FIRE] = &KeyboardManager::fire;
+	this->process_method_map[ICE] = &KeyboardManager::ice;
+	this->process_method_map[ROCKET] = &KeyboardManager::rocket;
+	this->process_method_map[SLIME] = &KeyboardManager::slime;
 }
 
 KeyboardManager::~KeyboardManager()
@@ -104,4 +112,32 @@ void KeyboardManager::unzoom(void *data) const
 	sf::View v = DataContainer::getInstance()->window->getView();
 	v.zoom(1.02f + (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame()));
 	DataContainer::getInstance()->window->setView(v);
+}
+
+void KeyboardManager::fire(void *data) const
+{
+	if (!DataContainer::getInstance()->sound_manager.isPlaying(FIRE_SOUND)) {
+		DataContainer::getInstance()->sound_manager.play(FIRE_SOUND);
+	}
+}
+
+void KeyboardManager::ice(void *data) const
+{
+	if (!DataContainer::getInstance()->sound_manager.isPlaying(ICE_SOUND)) {
+		DataContainer::getInstance()->sound_manager.play(ICE_SOUND);
+	}
+}
+
+void KeyboardManager::rocket(void *data) const
+{
+	if (!DataContainer::getInstance()->sound_manager.isPlaying(ROCKET_SOUND)) {
+		DataContainer::getInstance()->sound_manager.play(ROCKET_SOUND);
+	}
+}
+
+void KeyboardManager::slime(void *data) const
+{
+	if (!DataContainer::getInstance()->sound_manager.isPlaying(SLIME_SOUND)) {
+		DataContainer::getInstance()->sound_manager.play(SLIME_SOUND);
+	}
 }
