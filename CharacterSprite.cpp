@@ -35,7 +35,7 @@ void CharacterSprite::draw(sf::RenderTarget & target, sf::RenderStates states) c
 	sf::Transform transform;
 
 	if (this->_currentCase) {
-		transform.translate(0, -5 * this->_currentCase->depth * RESIZE_TILE_Y);
+		transform.translate(0, -DEPTH_SIZE * this->_currentCase->depth * RESIZE_TILE_Y);
 	}
 
 	target.draw(this->rect, transform);

@@ -7,6 +7,7 @@
 #define RESIZE_TILE_X 1
 #define RESIZE_TILE_Y 0.55f
 #define ROTATION_TILE 45
+#define DEPTH_SIZE 10
 
 #define M_PI 3.14159265358979323846
 

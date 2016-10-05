@@ -29,7 +29,6 @@ MapCase::MapCase(SaveMapCase *save_map_case, const sf::Texture &texture)
 	this->_sprite.setRotation(ROTATION_TILE);
 	this->_sprite.setScale(sf::Vector2f(100.f / (float)size.x, 100.f / (float)size.y));
 	this->_sprite.setPosition(new_position);
-	std::cout << (int)this->depth << std::endl;
 }
 
 MapCase::~MapCase()
@@ -40,7 +39,7 @@ void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	sf::Transform transform;
 	transform.scale(1.f, RESIZE_TILE_Y);
-	transform.translate(0, - this->depth * 5);
+	transform.translate(0, - this->depth * DEPTH_SIZE);
 
 	target.draw(this->_sprite, transform);
 

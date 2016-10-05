@@ -18,7 +18,4 @@ enum TextureConstants {
 	WATER
 };
 
-#ifndef __TEXTURE_CONSTANTS
-#define __TEXTURE_CONSTANTS
-	extern TextureConstants texture_constants[] = {FLOOR, GRASS, DIRT, WATER, NO_TEXTURE };
-#endif
+extern TextureConstants texture_constants[];

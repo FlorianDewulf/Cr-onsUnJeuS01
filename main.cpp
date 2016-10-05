@@ -14,7 +14,7 @@ int main()
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 	sf::Clock		clock;
-	DataContainer *data = DataContainer::getInstance();
+	DataContainer	*data = DataContainer::getInstance();
 
 	srand(NULL);
 
