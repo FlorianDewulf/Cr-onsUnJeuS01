@@ -3,16 +3,19 @@
 #include <SFML/Graphics.hpp>
 #include "DataContainer.hpp"
 #include "GlobalLight.hpp"
+#include "SaveMapCase.hpp"
 #include "Tool.hpp"
 
 class DataContainer;
 class MapCase;
+struct SaveMapCase;
 
 class MapCase : public sf::Drawable
 {
 	// METHODS
 public:
-	MapCase(const short &, const short &, const sf::Texture &);
+	//MapCase(const short &, const short &, const sf::Texture &);
+	MapCase(SaveMapCase *, const sf::Texture &);
 	~MapCase();
 
 	sf::Color		calcLightColor(const short & posX, const short & posY, const GlobalLight & light) const;

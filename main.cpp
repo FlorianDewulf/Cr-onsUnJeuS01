@@ -1,6 +1,7 @@
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <cstdlib>
 
 #include "GlobalLight.hpp"
 #include "IsometricMap.hpp"
@@ -8,25 +9,20 @@
 #include "KeyboardManager.hpp"
 #include "Tool.hpp"
 
-// TMP
-#include <cstdlib>
-
 int main()
 {
 	// Create the main window
 	sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
-	sf::Texture texture;
 	sf::Clock		clock;
-
-	if (!texture.loadFromFile("assets/tiles/sol.jpg")) {
-		return EXIT_FAILURE;
-	}
-
-	// TMP
-	srand(time(NULL));
-
 	DataContainer *data = DataContainer::getInstance();
-	data->init(&window, 15, 15, texture);
+
+	srand(NULL);
+
+	data->load_manager->openFile("mymap2");
+	data->load_manager->loadMap();
+	data->load_manager->closeFile();
+
+	data->init(&window, data->load_manager->getList());
 
 	while (window.isOpen())
 	{
@@ -36,13 +32,6 @@ int main()
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed) {
-				data->save_manager->saveMap(data->map);
-				data->save_manager->closeFile();
-
-				data->load_manager->openFile("save.lol");
-				data->load_manager->loadMap();
-				data->load_manager->closeFile();
-
 				window.close();
 			}
 

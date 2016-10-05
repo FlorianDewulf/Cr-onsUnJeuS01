@@ -5,23 +5,24 @@
 #include "GlobalLight.hpp"
 #include "IsometricMap.hpp"
 #include "KeyboardManager.hpp"
-#include "SaveManager.hpp"
 #include "LoadManager.hpp"
+#include "TextureManager.hpp"
 
 class CharacterSprite;
 class GameClock;
 class GlobalLight;
 class IsometricMap;
 class KeyboardManager;
-class SaveManager;
 class LoadManager;
+class SaveManager;
+class TextureManager;
 
 class DataContainer
 {
 public:
 	static DataContainer	*getInstance();
 
-	void			init(sf::RenderWindow * const, const short &, const short &, const sf::Texture &);
+	void			init(sf::RenderWindow * const, std::list<MapCase*> *);
 	void			updateView();
 	void			draw();
 
@@ -35,8 +36,8 @@ public:
 	CharacterSprite			*main_character;
 	KeyboardManager			*keyboard;
 	GameClock				clock;
-	SaveManager				*save_manager;
 	LoadManager				*load_manager;
+	TextureManager			texture_manager;
 
 private:
 	DataContainer();

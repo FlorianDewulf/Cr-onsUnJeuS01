@@ -1,6 +1,8 @@
 #pragma once
+#include "DataContainer.hpp"
 #include "MapCase.hpp"
 
+class DataContainer;
 class MapCase;
 
 struct SaveMapCase
@@ -8,6 +10,8 @@ struct SaveMapCase
 	SaveMapCase();
 	SaveMapCase(MapCase *);
 	~SaveMapCase();
+
+	MapCase *convertToMapCase();
 
 	unsigned short			id;
 	int						x;

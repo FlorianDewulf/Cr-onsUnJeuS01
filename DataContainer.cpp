@@ -3,7 +3,7 @@
 DataContainer *DataContainer::_instance;
 
 
-DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true), save_manager(new SaveManager()), load_manager(new LoadManager())
+DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true), load_manager(new LoadManager())
 {
 }
 
@@ -39,14 +39,13 @@ DataContainer *DataContainer::getInstance()
 	return DataContainer::_instance;
 }
 
-void		DataContainer::init(sf::RenderWindow * const new_window, const short &width, const short &height, const sf::Texture &texture)
+void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase*> *list)
 {
 	this->window = new_window;
-	this->map = new IsometricMap(width, height, texture);
+	this->map = new IsometricMap(list);
 	this->keyboard = new KeyboardManager();
 	this->main_character = new CharacterSprite();
 	this->updateView();
-	this->save_manager->openFile("save.lol");
 }
 
 void DataContainer::updateView()

@@ -28,8 +28,12 @@ void LoadManager::loadMap()
 
 		this->_file.read((char *)(&_case), sizeof(SaveMapCase));
 		length -= sizeof(SaveMapCase);
-		std::cout << "ID : " << _case.id << " - " << _case.x << ";" << _case.y << " " << (int)_case.depth << std::endl;
-
-		Sleep(100);
+		
+		this->_list.push_back(_case.convertToMapCase());
 	}
+}
+
+std::list<MapCase *> *LoadManager::getList()
+{
+	return &(this->_list);
 }

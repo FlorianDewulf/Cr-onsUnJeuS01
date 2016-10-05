@@ -1,27 +1,16 @@
 #include "IsometricMap.hpp"
 #include <iostream>
 
-IsometricMap::IsometricMap(const short &base_width, const short &base_height, const sf::Texture &texture)
-	: _width(base_width), _height(base_height), _shadow_tile(sf::Quads, 4)
+IsometricMap::IsometricMap(std::list<MapCase *> *list)
+	: _shadow_tile(sf::Quads, 4), _container(*list)
 {
-	std::list<MapCase *> link_container;
-
-	for (unsigned short y = 0; y < base_height; ++y) {
-		for (unsigned short x = 0; x < base_width; ++x) {
-			MapCase *tmp = new MapCase(x, y, texture);
-
-			this->_container.push_back(tmp);
-			link_container.push_back(tmp);
-		}
-	}
-
-	for (std::list<MapCase *>::iterator initial_case = link_container.begin(); initial_case != link_container.end(); ++initial_case) {
+	for (std::list<MapCase *>::iterator initial_case = list->begin(); initial_case != list->end(); ++initial_case) {
 
 		if ((*initial_case)->isFullyLinked()) {
-			initial_case = link_container.erase(initial_case);
+			initial_case = list->erase(initial_case);
 		}
 
-		for (std::list<MapCase *>::iterator comp_case = link_container.begin(); comp_case != link_container.end(); ++comp_case) {
+		for (std::list<MapCase *>::iterator comp_case = list->begin(); comp_case != list->end(); ++comp_case) {
 			if ((*initial_case)->id == (*comp_case)->id) {
 				continue;
 			}
@@ -29,11 +18,11 @@ IsometricMap::IsometricMap(const short &base_width, const short &base_height, co
 			MapCase::linkCases((*initial_case), (*comp_case));
 
 			if ((*comp_case)->isFullyLinked()) {
-				comp_case = link_container.erase(comp_case);
+				comp_case = list->erase(comp_case);
 				--comp_case;
 			}
 			if ((*initial_case)->isFullyLinked()) {
-				initial_case = link_container.erase(initial_case);
+				initial_case = list->erase(initial_case);
 				--initial_case;
 				break;
 			}
@@ -54,7 +43,8 @@ void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
 			window.draw((**it));
 
-			if (DataContainer::getInstance()->main_character->getCurrentCase()->id == (*it)->id) {
+			if (DataContainer::getInstance()->main_character->getCurrentCase() &&
+					DataContainer::getInstance()->main_character->getCurrentCase()->id == (*it)->id) {
 				DataContainer::getInstance()->window->draw(*DataContainer::getInstance()->main_character);
 			}
 		}
@@ -81,26 +71,6 @@ MapCase * IsometricMap::findHumanTile(const sf::Vector2i &position)
 	}
 
 	return NULL;
-}
-
-short IsometricMap::getWidth() const
-{
-	return this->_width;
-}
-
-void IsometricMap::setWidth(const short &new_width)
-{
-	this->_width = new_width;
-}
-
-short IsometricMap::getHeight() const
-{
-	return this->_height;
-}
-
-void IsometricMap::setHeight(const short &new_height)
-{
-	this->_width = new_height;
 }
 
 sf::VertexArray & IsometricMap::getShadowTile()

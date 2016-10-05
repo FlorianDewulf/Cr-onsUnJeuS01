@@ -16,3 +16,10 @@ SaveMapCase::SaveMapCase(MapCase *_case)
 SaveMapCase::~SaveMapCase()
 {
 }
+
+MapCase * SaveMapCase::convertToMapCase()
+{
+	TextureConstants random = (TextureConstants)(rand() % WATER + FLOOR);
+
+	return new MapCase(this, *(DataContainer::getInstance()->texture_manager.texture_pool[random]));
+}

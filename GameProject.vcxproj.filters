@@ -31,6 +31,9 @@
     <Filter Include="Fichiers sources\Core">
       <UniqueIdentifier>{ee683c0e-193d-4904-a660-644326e77a04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Abstract">
+      <UniqueIdentifier>{66af7b48-0992-41ad-9fb4-33e6f7148fc4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\tiles\sol.jpg">
@@ -71,11 +74,14 @@
     <ClCompile Include="SaveMapCase.cpp">
       <Filter>Fichiers sources\Tools</Filter>
     </ClCompile>
-    <ClCompile Include="LoadManager.cpp">
-      <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
     <ClCompile Include="AFileManager.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="LoadManager.cpp">
+      <Filter>Fichiers sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Fichiers sources\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,6 +125,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="AFileManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

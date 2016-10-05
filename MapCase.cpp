@@ -1,11 +1,10 @@
 #include "MapCase.hpp"
 // TMP
-#include <cstdlib>
 #include <iostream>
 
 unsigned short MapCase::id_count = 1;
 
-MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture)
+/*MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture)
 	: id(MapCase::id_count++), humanCoord(x, y), coord(x, y), _sprite(texture), depth(0), _up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
 {
 	sf::Vector2u size = this->_sprite.getTexture()->getSize();
@@ -17,6 +16,20 @@ MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture)
 
 	// TMP - waiting loading map
 	this->depth = rand() % 11;
+}*/
+
+MapCase::MapCase(SaveMapCase *save_map_case, const sf::Texture &texture)
+	: id(save_map_case->id), humanCoord(save_map_case->x, save_map_case->y),
+	coord(save_map_case->x, save_map_case->y), _sprite(texture), depth((int)save_map_case->depth * 5),
+	_up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
+{
+	sf::Vector2u size = this->_sprite.getTexture()->getSize();
+	sf::Vector2f new_position(Tool::toWindowCoord(save_map_case->x, save_map_case->y, true));
+
+	this->_sprite.setRotation(ROTATION_TILE);
+	this->_sprite.setScale(sf::Vector2f(100.f / (float)size.x, 100.f / (float)size.y));
+	this->_sprite.setPosition(new_position);
+	std::cout << (int)this->depth << std::endl;
 }
 
 MapCase::~MapCase()
