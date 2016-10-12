@@ -39,13 +39,25 @@ IsometricMap::~IsometricMap()
 
 void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 {
+	std::list<NPC *> npcs = DataContainer::getInstance()->npcs;
+	bool already_displayed_main_character = false;
+
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
 		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
 			window.draw((**it));
 
-			if (DataContainer::getInstance()->main_character->getCurrentCase() &&
+			if (!already_displayed_main_character && DataContainer::getInstance()->main_character->getCurrentCase() &&
 					DataContainer::getInstance()->main_character->getCurrentCase()->id == (*it)->id) {
 				DataContainer::getInstance()->window->draw(*DataContainer::getInstance()->main_character);
+				already_displayed_main_character = true;
+			}
+
+			for (std::list<NPC *>::iterator npc = npcs.begin(); npc != npcs.end(); ++npc) {
+				if ((*npc)->getCurrentCase() && (*npc)->getCurrentCase()->id == (*it)->id) {
+					DataContainer::getInstance()->window->draw((**npc));
+					npcs.erase(npc);
+					break;
+				}
 			}
 		}
 	}
@@ -54,7 +66,7 @@ void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 MapCase *IsometricMap::findTile(const sf::Vector2f &position)
 {
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
-		if ((int)(*it)->coord.x == (int)position.x && (int)(*it)->coord.y == (int)position.y) {
+		if (floor((*it)->coord.x) == floor(position.x) && floor((*it)->coord.y) == floor(position.y)) {
 			return *it;
 		}
 	}

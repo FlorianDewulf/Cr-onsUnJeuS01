@@ -1,20 +1,2 @@
-﻿  SoundManager.cpp
-  MusicManager.cpp
-  Génération de code en cours...
-  Compilation en cours...
-  main.cpp
-  SaveMapCase.cpp
-  SaveManager.cpp
-  MapCase.cpp
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\mapcase.cpp(25): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\mapcase.cpp(27): warning C4244: 'argument' : conversion de 'int' en 'const float', perte possible de données
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\mapcase.cpp(42): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\mapcase.cpp(48): warning C4244: 'argument' : conversion de 'const float' en 'const short', perte possible de données
-  LoadManager.cpp
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\loadmanager.cpp(23): warning C4244: '=' : conversion de 'std::streamoff' en 'unsigned int', perte possible de données
-  KeyboardManager.cpp
-  IsometricMap.cpp
-  DataContainer.cpp
-  CharacterSprite.cpp
-  Génération de code en cours...
+﻿  NPC.cpp
   GameProject.vcxproj -> F:\Shared files for Virtualbox\GameProject\GameProject\x64\Debug\GameProject.exe

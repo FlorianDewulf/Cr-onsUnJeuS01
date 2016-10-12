@@ -66,6 +66,11 @@ void KeyboardManager::eventInterpreter()
 	}
 }
 
+std::list<KeyConstants> KeyboardManager::getActions() const
+{
+	return this->actions;
+}
+
 /**
  * Private
  * Method for the method pointer
@@ -73,26 +78,54 @@ void KeyboardManager::eventInterpreter()
 
 void KeyboardManager::moveForward(void *data) const
 {
-	DataContainer::getInstance()->light.coord.y -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	sf::Vector2f future_coord = DataContainer::getInstance()->light.coord;
+	MapCase *future_case = 0;
+
+	future_coord.y -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
+	future_case = DataContainer::getInstance()->map->findTile(future_coord);
+	if (future_case && future_case->can_collide) {
+		DataContainer::getInstance()->light.coord = future_coord;
+		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	}
 }
 
 void KeyboardManager::moveLeft(void *data) const
 {
-	DataContainer::getInstance()->light.coord.x -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	sf::Vector2f future_coord = DataContainer::getInstance()->light.coord;
+	MapCase *future_case = 0;
+
+	future_coord.x -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
+	future_case = DataContainer::getInstance()->map->findTile(future_coord);
+	if (future_case && future_case->can_collide) {
+		DataContainer::getInstance()->light.coord = future_coord;
+		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	}
 }
 
 void KeyboardManager::moveBackward(void *data) const
 {
-	DataContainer::getInstance()->light.coord.y += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	sf::Vector2f future_coord = DataContainer::getInstance()->light.coord;
+	MapCase *future_case = 0;
+
+	future_coord.y += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
+	future_case = DataContainer::getInstance()->map->findTile(future_coord);
+	if (future_case && future_case->can_collide) {
+		DataContainer::getInstance()->light.coord = future_coord;
+		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	}
 }
 
 void KeyboardManager::moveRight(void *data) const
 {
-	DataContainer::getInstance()->light.coord.x += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
-	DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	sf::Vector2f future_coord = DataContainer::getInstance()->light.coord;
+	MapCase *future_case = 0;
+
+	future_coord.x += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
+	future_case = DataContainer::getInstance()->map->findTile(future_coord);
+	if (future_case && future_case->can_collide) {
+		DataContainer::getInstance()->light.coord = future_coord;
+		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
+	}
 }
 
 void KeyboardManager::closeWindow(void *data) const

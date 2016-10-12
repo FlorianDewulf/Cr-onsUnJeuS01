@@ -1,25 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <list>
+#include "ACharacter.hpp"
 #include "DataContainer.hpp"
+#include "Enum.hpp"
 #include "MapCase.hpp"
 #include "Tool.hpp"
 
+class ACharacter;
 class DataContainer;
 class MapCase;
 
-class CharacterSprite : public sf::Drawable
+class CharacterSprite : public ACharacter
 {
 public:
 	CharacterSprite();
 	~CharacterSprite();
 
-	void				move(const sf::Vector2f &);
-	void				findCase();
-	MapCase				*getCurrentCase() const;
-
-private:
-	virtual void		draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	sf::RectangleShape	rect;
-	MapCase				*_currentCase;
+	void				changeOrientation(const std::list<KeyConstants> &);
 };
-

@@ -10,6 +10,7 @@ SaveMapCase::SaveMapCase(MapCase *_case)
 	this->x = _case->humanCoord.x;
 	this->y = _case->humanCoord.y;
 	this->depth = _case->depth;
+	this->can_collide = _case->can_collide;
 }
 
 

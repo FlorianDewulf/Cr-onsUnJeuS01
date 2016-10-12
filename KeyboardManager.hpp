@@ -17,6 +17,8 @@ public:
 	void		eventStorage(const sf::Event &);
 	void		eventInterpreter();
 
+	std::list<KeyConstants> getActions() const;
+
 /**
  * Method for the method pointer
  */

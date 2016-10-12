@@ -162,6 +162,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ACharacter.cpp" />
     <ClCompile Include="AFileManager.cpp" />
     <ClCompile Include="CharacterSprite.cpp" />
     <ClCompile Include="DataContainer.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapCase.cpp" />
     <ClCompile Include="MusicManager.cpp" />
+    <ClCompile Include="NPC.cpp" />
     <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SaveMapCase.cpp" />
     <ClCompile Include="SoundManager.cpp" />
@@ -184,6 +186,7 @@
     <Image Include="assets\tiles\sol.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ACharacter.hpp" />
     <ClInclude Include="AFileManager.hpp" />
     <ClInclude Include="CharacterSprite.hpp" />
     <ClInclude Include="DataContainer.hpp" />
@@ -195,6 +198,7 @@
     <ClInclude Include="LoadManager.hpp" />
     <ClInclude Include="MapCase.hpp" />
     <ClInclude Include="MusicManager.hpp" />
+    <ClInclude Include="NPC.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="SaveManager.hpp" />
     <ClInclude Include="SaveMapCase.hpp" />

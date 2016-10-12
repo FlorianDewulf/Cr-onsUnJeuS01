@@ -50,6 +50,7 @@ public:
 	sf::Vector2i			humanCoord;
 	sf::Vector2f			coord;
 	char					depth;
+	bool					can_collide;
 
 private:
 	sf::Sprite				_sprite;

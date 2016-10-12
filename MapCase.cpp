@@ -21,7 +21,7 @@ unsigned short MapCase::id_count = 1;
 MapCase::MapCase(SaveMapCase *save_map_case, const sf::Texture &texture)
 	: id(save_map_case->id), humanCoord(save_map_case->x, save_map_case->y),
 	coord(save_map_case->x, save_map_case->y), _sprite(texture), depth((int)save_map_case->depth * 5),
-	_up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
+	can_collide(save_map_case->can_collide), _up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
 {
 	sf::Vector2u size = this->_sprite.getTexture()->getSize();
 	sf::Vector2f new_position(Tool::toWindowCoord(save_map_case->x, save_map_case->y, true));

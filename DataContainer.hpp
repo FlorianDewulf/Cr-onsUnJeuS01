@@ -1,12 +1,13 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "CharacterSprite.hpp"
+#include "IsometricMap.hpp"
 #include "GameClock.hpp"
 #include "GlobalLight.hpp"
-#include "IsometricMap.hpp"
 #include "KeyboardManager.hpp"
 #include "LoadManager.hpp"
 #include "MusicManager.hpp"
+#include "NPC.hpp"
 #include "SoundManager.hpp"
 #include "TextureManager.hpp"
 
@@ -43,6 +44,7 @@ public:
 	TextureManager			texture_manager;
 	SoundManager			sound_manager;
 	MusicManager			music_manager;
+	std::list<NPC *>		npcs;
 
 private:
 	DataContainer();

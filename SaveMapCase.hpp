@@ -17,4 +17,5 @@ struct SaveMapCase
 	int						x;
 	int						y;
 	char					depth;
+	bool					can_collide;
 };

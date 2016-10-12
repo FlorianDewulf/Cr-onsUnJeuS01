@@ -3,9 +3,9 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "DataContainer.hpp"
 #include "GlobalLight.hpp"
 #include "IsometricMap.hpp"
-#include "DataContainer.hpp"
 #include "KeyboardManager.hpp"
 #include "Tool.hpp"
 
@@ -18,7 +18,7 @@ int main()
 
 	srand(NULL);
 
-	data->load_manager->openFile("mymap2");
+	data->load_manager->openFile("mymap");
 	data->load_manager->loadMap();
 	data->load_manager->closeFile();
 

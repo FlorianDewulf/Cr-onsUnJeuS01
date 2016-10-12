@@ -1,7 +1,5 @@
 #include "TextureManager.hpp"
 
-
-
 TextureManager::TextureManager()
 {
 	int nb_texture;

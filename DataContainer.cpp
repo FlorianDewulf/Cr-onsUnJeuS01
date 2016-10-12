@@ -45,8 +45,14 @@ void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase
 	this->map = new IsometricMap(list);
 	this->keyboard = new KeyboardManager();
 	this->main_character = new CharacterSprite();
-	this->music_manager.play(MUSIC_DEFAULT);
+	//this->music_manager.play(MUSIC_DEFAULT);
 	this->_updateView();
+
+	// TODO : TO DELETE LATER
+	char toto = rand() % 20 + 1;
+	for (char i = 0; i < toto; ++i) {
+		this->npcs.push_back(new NPC());
+	}
 }
 
 void DataContainer::draw()
@@ -65,6 +71,7 @@ void DataContainer::update()
 {
 	this->keyboard->eventInterpreter();
 	this->main_character->findCase();
+	this->main_character->changeOrientation(this->keyboard->getActions());
 	this->_updateView();
 	this->music_manager.update();
 	this->sound_manager.update();
