@@ -199,3 +199,4 @@ void MapCase::addDepthTile(sf::RenderTarget &window, const sf::Vector2f &positio
 
 	window.draw(tile, transform);
 }
+

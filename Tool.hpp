@@ -16,6 +16,7 @@ namespace Tool
 	// Coord translation
 	sf::Vector2f	toWindowCoord(const float &x, const float &y, const bool with_transformation = false);
 	sf::Vector2i	toDataCoord(const float &x, const float &y, const bool);
+	sf::Vector2f	toDataCoordF(const float &x, const float &y, const bool);
 
 	// Angle conversion
 	float			toDegree(const float &);
@@ -31,4 +32,7 @@ namespace Tool
 
 	// Hitbox
 	bool			isInBoundDataCoord(const sf::Vector2i &, const sf::Vector2i &, const sf::Vector2i &);
+
+	// Geometry
+	float			pythagore_hypothenuse(float &a, float &b);
 };

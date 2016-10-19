@@ -164,11 +164,13 @@
   <ItemGroup>
     <ClCompile Include="ACharacter.cpp" />
     <ClCompile Include="AFileManager.cpp" />
+    <ClCompile Include="AObject.cpp" />
     <ClCompile Include="CharacterSprite.cpp" />
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GlobalLight.cpp" />
     <ClCompile Include="IsometricMap.cpp" />
+    <ClCompile Include="Item.cpp" />
     <ClCompile Include="KeyboardManager.cpp" />
     <ClCompile Include="LoadManager.cpp" />
     <ClCompile Include="main.cpp" />
@@ -183,17 +185,20 @@
     <ClCompile Include="Tool.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="assets\barrel_E.png" />
     <Image Include="assets\tiles\sol.jpg" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ACharacter.hpp" />
     <ClInclude Include="AFileManager.hpp" />
+    <ClInclude Include="AObject.hpp" />
     <ClInclude Include="CharacterSprite.hpp" />
     <ClInclude Include="DataContainer.hpp" />
     <ClInclude Include="GameClock.hpp" />
     <ClInclude Include="GlobalLight.hpp" />
     <ClInclude Include="Enum.hpp" />
     <ClInclude Include="IsometricMap.hpp" />
+    <ClInclude Include="Item.hpp" />
     <ClInclude Include="KeyboardManager.hpp" />
     <ClInclude Include="LoadManager.hpp" />
     <ClInclude Include="MapCase.hpp" />

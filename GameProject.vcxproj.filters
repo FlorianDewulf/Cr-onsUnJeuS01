@@ -39,6 +39,9 @@
     <Image Include="assets\tiles\sol.jpg">
       <Filter>Fichiers de ressources\assets\tiles</Filter>
     </Image>
+    <Image Include="assets\barrel_E.png">
+      <Filter>Fichiers de ressources\assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -98,6 +101,12 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
+    <ClCompile Include="AObject.cpp">
+      <Filter>Fichiers sources\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="IsometricMap.hpp">
@@ -155,6 +164,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="ACharacter.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="AObject.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

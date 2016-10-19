@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "MapCase.hpp"
 #include "GlobalLight.hpp"
+#include "Item.hpp"
 #include "Tool.hpp"
 #include "DataContainer.hpp"
 
@@ -22,6 +23,7 @@ public:
 
 	sf::VertexArray			&getShadowTile();
 	std::list<MapCase *>	getCaseList() const;
+	MapCase					*getRandomCase() const;
 
 private:
 	std::list<MapCase *>	_container;

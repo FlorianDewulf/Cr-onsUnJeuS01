@@ -53,6 +53,10 @@ void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase
 	for (char i = 0; i < toto; ++i) {
 		this->npcs.push_back(new NPC());
 	}
+	toto = rand() % 20 + 1;
+	for (char i = 0; i < toto; ++i) {
+		this->items.push_back(new Item());
+	}
 }
 
 void DataContainer::draw()

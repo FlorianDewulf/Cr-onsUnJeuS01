@@ -1,2 +1,4 @@
-﻿  NPC.cpp
+﻿  Item.cpp
+f:\shared files for virtualbox\gameproject\gameproject\gameproject\item.cpp(12): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
+f:\shared files for virtualbox\gameproject\gameproject\gameproject\item.cpp(39): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
   GameProject.vcxproj -> F:\Shared files for Virtualbox\GameProject\GameProject\x64\Debug\GameProject.exe

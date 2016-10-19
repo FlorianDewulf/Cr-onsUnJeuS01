@@ -4,6 +4,7 @@
 #include "IsometricMap.hpp"
 #include "GameClock.hpp"
 #include "GlobalLight.hpp"
+#include "Item.hpp"
 #include "KeyboardManager.hpp"
 #include "LoadManager.hpp"
 #include "MusicManager.hpp"
@@ -45,6 +46,7 @@ public:
 	SoundManager			sound_manager;
 	MusicManager			music_manager;
 	std::list<NPC *>		npcs;
+	std::list<Item *>		items;
 
 private:
 	DataContainer();

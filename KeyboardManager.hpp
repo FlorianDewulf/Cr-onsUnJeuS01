@@ -35,7 +35,6 @@ private:
 	void		rocket(void * data) const;
 	void		slime(void * data) const;
 
-
 private:
 	std::map<sf::Keyboard::Key, KeyConstants>						input_mapping;
 	std::list<KeyConstants>											actions;

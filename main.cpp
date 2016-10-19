@@ -16,7 +16,7 @@ int main()
 	sf::Clock		clock;
 	DataContainer	*data = DataContainer::getInstance();
 
-	srand(NULL);
+	srand(time(NULL));
 
 	data->load_manager->openFile("mymap");
 	data->load_manager->loadMap();
