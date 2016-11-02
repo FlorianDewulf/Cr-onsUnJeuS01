@@ -28,3 +28,11 @@ void ACharacter::move(const sf::Vector2f &coord)
 	this->_position.x = coord.x;
 	this->_position.y = coord.y;
 }
+
+sf::Vector2u ACharacter::getSizeTexture() const
+{
+	sf::Vector2u size = this->_texture_character.getSize();
+	size.x /= 3;
+	size.y /= 3;
+	return size;
+}

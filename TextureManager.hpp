@@ -1,6 +1,9 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Enum.hpp"
+#include "TextureLexer.hpp"
+
+class TextureLexer;
 
 class TextureManager
 {
@@ -9,6 +12,10 @@ public:
 	~TextureManager();
 
 public:
-	std::map<TextureConstants, sf::Texture *>		texture_pool;
+	std::vector<sf::Texture *>	&getSetTexture();
+	void						loadSet(const std::string);
+
+private:
+	TextureLexer				*_texture_lexer;
 };
 

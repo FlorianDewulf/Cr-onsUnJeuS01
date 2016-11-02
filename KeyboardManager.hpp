@@ -5,6 +5,7 @@
 #include <SFML/Graphics.hpp>
 #include "Enum.hpp"
 #include "DataContainer.hpp"
+#include "Tool.hpp"
 
 class DataContainer;
 

@@ -74,6 +74,7 @@ void DataContainer::draw()
 void DataContainer::update()
 {
 	this->keyboard->eventInterpreter();
+	this->main_character->update();
 	this->main_character->findCase();
 	this->main_character->changeOrientation(this->keyboard->getActions());
 	this->_updateView();

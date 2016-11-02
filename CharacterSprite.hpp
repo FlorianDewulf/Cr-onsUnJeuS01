@@ -17,5 +17,5 @@ public:
 	CharacterSprite();
 	~CharacterSprite();
 
-	void				changeOrientation(const std::list<KeyConstants> &);
+	void			changeOrientation(const std::list<KeyConstants> &);
 };

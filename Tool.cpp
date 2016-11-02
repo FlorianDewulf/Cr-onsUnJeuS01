@@ -1,4 +1,5 @@
 #include "Tool.hpp"
+#include "MapCase.hpp"
 
 namespace Tool {
 	sf::Vector2f toWindowCoord(const float &x, const float &y, const bool with_transformation)
@@ -51,6 +52,12 @@ namespace Tool {
 		return number;
 	}
 
+	// Min = 0 : Max = 2
+	float getPercentageDarknessFromTime(const float &time)
+	{
+		return (-cos(M_PI * time / DAY_DURATION_SECONDS) + 1);
+	}
+
 	sf::Vector2f calcSizeAfterRotation(const float &width, const float &height, const float &angle_deg)
 	{
 		return sf::Vector2f(
@@ -69,6 +76,23 @@ namespace Tool {
 		return width * sin(toRad(angle_deg)) + height * cos(toRad(angle_deg));
 	}
 
+	sf::Color getAverageColorShadowTile()
+	{
+		/*return sf::Color(
+			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.r + DataContainer::getInstance()->map->getShadowTile()[1].color.r + DataContainer::getInstance()->map->getShadowTile()[2].color.r + DataContainer::getInstance()->map->getShadowTile()[3].color.r) / 4.f),
+			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.g + DataContainer::getInstance()->map->getShadowTile()[1].color.g + DataContainer::getInstance()->map->getShadowTile()[2].color.g + DataContainer::getInstance()->map->getShadowTile()[3].color.g) / 4.f),
+			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.b + DataContainer::getInstance()->map->getShadowTile()[1].color.b + DataContainer::getInstance()->map->getShadowTile()[2].color.b + DataContainer::getInstance()->map->getShadowTile()[3].color.b) / 4.f),
+			255
+			);*/
+		return sf::Color(
+			DataContainer::getInstance()->map->getShadowTile()[0].color.r | DataContainer::getInstance()->map->getShadowTile()[1].color.r | DataContainer::getInstance()->map->getShadowTile()[2].color.r | DataContainer::getInstance()->map->getShadowTile()[3].color.r,
+			DataContainer::getInstance()->map->getShadowTile()[0].color.g | DataContainer::getInstance()->map->getShadowTile()[1].color.g | DataContainer::getInstance()->map->getShadowTile()[2].color.g | DataContainer::getInstance()->map->getShadowTile()[3].color.g,
+			DataContainer::getInstance()->map->getShadowTile()[0].color.b | DataContainer::getInstance()->map->getShadowTile()[1].color.b | DataContainer::getInstance()->map->getShadowTile()[2].color.b | DataContainer::getInstance()->map->getShadowTile()[3].color.b,
+			255
+		);
+	}
+
+
 	bool isInBoundDataCoord(const sf::Vector2i &position, const sf::Vector2i &min_position, const sf::Vector2i &max_position)
 	{
 		return (position.x > min_position.x && position.y > min_position.y && position.x < max_position.x && position.y < max_position.y);
@@ -79,5 +103,35 @@ namespace Tool {
 		return sqrt(a*a + b*b);
 	}
 
+	bool collide_something(MapCase *_case, const sf::Vector2f &coord, bool recursive) {
+		if (!_case) {
+			return false;
+		}
+		
+		sf::Rect<float> hitbox_character;
+		sf::Rect<float> hitbox_item;
 
+		float size_texture = DataContainer::getInstance()->main_character->getSizeTexture().x * DataContainer::getInstance()->main_character->getScale().x / SIZE_TILE_X * SCALE_TEXTURE_TO_HITBOX;
+		hitbox_character.left = coord.x - size_texture / 2;
+		hitbox_character.top = coord.y - size_texture / 2;
+		hitbox_character.width = size_texture;
+		hitbox_character.height = size_texture;
+
+		for (std::list<IObject *>::iterator obj = _case->getListCharacterOn().begin(); obj != _case->getListCharacterOn().end(); ++obj) {
+			size_texture = (*obj)->getSizeTexture().x * (*obj)->getScale().x / SIZE_TILE_X * SCALE_TEXTURE_TO_HITBOX;
+			hitbox_item.left = (*obj)->_position.x - size_texture / 2;
+			hitbox_item.top = (*obj)->_position.y - size_texture / 2;
+			hitbox_item.width = size_texture;
+			hitbox_item.height = size_texture;
+
+			if (hitbox_character.intersects(hitbox_item)) {
+				return true;
+			}
+		}
+
+		if (recursive) {
+			return collide_something(_case->up(), coord) || collide_something(_case->left(), coord) || collide_something(_case->right(), coord) || collide_something(_case->bottom(), coord);
+		}
+		return false;
+	}
 }

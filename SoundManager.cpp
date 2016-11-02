@@ -6,7 +6,7 @@ SoundManager::SoundManager()
 {
 	int nb_sound;
 
-	for (nb_sound = 0; sound_constants[nb_sound] != NO_TEXTURE; ++nb_sound) {
+	for (nb_sound = 0; sound_constants[nb_sound] != NO_SOUND; ++nb_sound) {
 		this->_soundBuffer_pool[sound_constants[nb_sound]] = new sf::SoundBuffer();
 		this->_soundBuffer_pool[sound_constants[nb_sound]]->loadFromFile("assets/sounds/" + sound_filename_constants[nb_sound]);
 	}

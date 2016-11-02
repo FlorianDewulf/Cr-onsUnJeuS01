@@ -10,9 +10,15 @@ class IObject : public sf::Drawable
 public:
 	IObject(const std::string &);
 	virtual ~IObject();
+
+public:
+	virtual void				update();
+	virtual void				update(const sf::Color &);
 	virtual MapCase				*getCurrentCase() const;
+	virtual sf::Vector2f		getScale() const;
 	virtual void				findCase();
 	virtual void				move(const sf::Vector2f & coord) = 0;
+	virtual sf::Vector2u		getSizeTexture() const;
 
 protected:
 	virtual void				draw(sf::RenderTarget& target, sf::RenderStates states) const;

@@ -4,7 +4,7 @@ MusicManager::MusicManager()
 {
 	int nb_music;
 
-	for (nb_music = 0; music_constants[nb_music] != NO_TEXTURE; ++nb_music) {
+	for (nb_music = 0; music_constants[nb_music] != NO_MUSIC; ++nb_music) {
 		this->musicBuffer_pool[music_constants[nb_music]] = "assets/musics/" + music_filename_constants[nb_music];
 	}
 }

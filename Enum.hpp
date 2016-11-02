@@ -15,14 +15,6 @@ enum KeyConstants {
 	SLIME
 };
 
-enum TextureConstants {
-	NO_TEXTURE = 0,
-	FLOOR,
-	GRASS,
-	DIRT,
-	WATER
-};
-
 enum SoundConstants {
 	NO_SOUND = 0,
 	FIRE_SOUND,
@@ -36,7 +28,6 @@ enum MusicConstants {
 	MUSIC_DEFAULT
 };
 
-extern TextureConstants texture_constants[];
 extern SoundConstants	sound_constants[];
 extern std::string		sound_filename_constants[];
 extern MusicConstants	music_constants[];

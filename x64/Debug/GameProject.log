@@ -1,4 +1,6 @@
-﻿  Item.cpp
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\item.cpp(12): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
-f:\shared files for virtualbox\gameproject\gameproject\gameproject\item.cpp(39): warning C4244: 'argument' : conversion de 'double' en 'float', perte possible de données
-  GameProject.vcxproj -> F:\Shared files for Virtualbox\GameProject\GameProject\x64\Debug\GameProject.exe
+﻿  MapCase.cpp
+f:\prog\gameproject\gameproject\gameproject\mapcase.cpp(9): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+f:\prog\gameproject\gameproject\gameproject\mapcase.cpp(11): warning C4244: 'argument' : conversion de 'int' en 'const float', perte possible de données
+f:\prog\gameproject\gameproject\gameproject\mapcase.cpp(26): warning C4244: 'argument' : conversion de 'float' en 'const short', perte possible de données
+f:\prog\gameproject\gameproject\gameproject\mapcase.cpp(43): warning C4244: 'argument' : conversion de 'int' en 'float', perte possible de données
+  GameProject.vcxproj -> F:\Prog\GameProject\GameProject\x64\Debug\GameProject.exe

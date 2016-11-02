@@ -12,4 +12,5 @@ public:
 	ACharacter();
 	virtual ~ACharacter();
 	virtual void	move(const sf::Vector2f & coord);
+	sf::Vector2u getSizeTexture() const;
 };

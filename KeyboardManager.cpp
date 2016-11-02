@@ -83,7 +83,7 @@ void KeyboardManager::moveForward(void *data) const
 
 	future_coord.y -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	future_case = DataContainer::getInstance()->map->findTile(future_coord);
-	if (future_case && future_case->can_collide) {
+	if (future_case && future_case->can_collide && !Tool::collide_something(future_case, future_coord, true)) {
 		DataContainer::getInstance()->light.coord = future_coord;
 		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 	}
@@ -96,7 +96,7 @@ void KeyboardManager::moveLeft(void *data) const
 
 	future_coord.x -= 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	future_case = DataContainer::getInstance()->map->findTile(future_coord);
-	if (future_case && future_case->can_collide) {
+	if (future_case && future_case->can_collide && !Tool::collide_something(future_case, future_coord, true)) {
 		DataContainer::getInstance()->light.coord = future_coord;
 		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 	}
@@ -109,7 +109,7 @@ void KeyboardManager::moveBackward(void *data) const
 
 	future_coord.y += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	future_case = DataContainer::getInstance()->map->findTile(future_coord);
-	if (future_case && future_case->can_collide) {
+	if (future_case && future_case->can_collide && !Tool::collide_something(future_case, future_coord, true)) {
 		DataContainer::getInstance()->light.coord = future_coord;
 		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 	}
@@ -122,7 +122,7 @@ void KeyboardManager::moveRight(void *data) const
 
 	future_coord.x += 5.0f * (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame());
 	future_case = DataContainer::getInstance()->map->findTile(future_coord);
-	if (future_case && future_case->can_collide) {
+	if (future_case && future_case->can_collide && !Tool::collide_something(future_case, future_coord, true)) {
 		DataContainer::getInstance()->light.coord = future_coord;
 		DataContainer::getInstance()->main_character->move(DataContainer::getInstance()->light.coord);
 	}

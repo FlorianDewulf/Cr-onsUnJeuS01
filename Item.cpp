@@ -23,6 +23,9 @@ Item::Item() : IObject("assets/barrel_E.png")
 
 	this->move(this->_position);
 	this->_currentCase = random_case;
+	if (random_case) {
+		random_case->addObject(this);
+	}
 }
 
 

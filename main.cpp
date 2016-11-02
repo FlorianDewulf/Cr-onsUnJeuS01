@@ -18,6 +18,8 @@ int main()
 
 	srand(time(NULL));
 
+	data->texture_manager.loadSet("set_one");
+
 	data->load_manager->openFile("mymap");
 	data->load_manager->loadMap();
 	data->load_manager->closeFile();

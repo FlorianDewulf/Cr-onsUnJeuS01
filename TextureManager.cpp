@@ -1,16 +1,22 @@
 #include "TextureManager.hpp"
 
-TextureManager::TextureManager()
+TextureManager::TextureManager() : _texture_lexer(new TextureLexer)
 {
-	int nb_texture;
-
-	for (nb_texture = 0; texture_constants[nb_texture] != NO_TEXTURE; ++nb_texture) {
-		this->texture_pool[texture_constants[nb_texture]] = new sf::Texture();
-		this->texture_pool[texture_constants[nb_texture]]->loadFromFile("assets/tiles/image_" + std::to_string(nb_texture) + ".png");
-	}
+	this->_texture_lexer->openFile("./config/texture_config.conf");
+	this->_texture_lexer->process();
 }
-
 
 TextureManager::~TextureManager()
 {
+	delete _texture_lexer;
+}
+
+std::vector<sf::Texture*>& TextureManager::getSetTexture()
+{
+	return this->_texture_lexer->getLoadedSet();
+}
+
+void TextureManager::loadSet(const std::string str)
+{
+	this->_texture_lexer->loadSet(str);
 }

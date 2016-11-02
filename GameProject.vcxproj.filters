@@ -34,6 +34,9 @@
     <Filter Include="Fichiers sources\Abstract">
       <UniqueIdentifier>{66af7b48-0992-41ad-9fb4-33e6f7148fc4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers sources\Interfaces">
+      <UniqueIdentifier>{5e70d93d-570e-48fa-a1d9-31298f2766df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\tiles\sol.jpg">
@@ -64,9 +67,6 @@
     </ClCompile>
     <ClCompile Include="Tool.cpp">
       <Filter>Fichiers sources\Tools</Filter>
-    </ClCompile>
-    <ClCompile Include="CharacterSprite.cpp">
-      <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
     <ClCompile Include="GameClock.cpp">
       <Filter>Fichiers sources\Core</Filter>
@@ -101,11 +101,17 @@
     <ClCompile Include="NPC.cpp">
       <Filter>Fichiers sources\Models</Filter>
     </ClCompile>
-    <ClCompile Include="AObject.cpp">
-      <Filter>Fichiers sources\Abstract</Filter>
-    </ClCompile>
     <ClCompile Include="Item.cpp">
       <Filter>Fichiers sources\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="IObject.cpp">
+      <Filter>Fichiers sources\Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterSprite.cpp">
+      <Filter>Fichiers sources\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureLexer.cpp">
+      <Filter>Fichiers sources\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,7 +175,10 @@
     <ClInclude Include="Item.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="AObject.hpp">
+    <ClInclude Include="IObject.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureLexer.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

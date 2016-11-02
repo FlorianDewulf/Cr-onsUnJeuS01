@@ -20,7 +20,11 @@ SaveMapCase::~SaveMapCase()
 
 MapCase * SaveMapCase::convertToMapCase()
 {
-	TextureConstants random = (TextureConstants)(rand() % WATER + FLOOR);
+	std::vector<sf::Texture *> &texture = DataContainer::getInstance()->texture_manager.getSetTexture();
 
-	return new MapCase(this, *(DataContainer::getInstance()->texture_manager.texture_pool[random]));
+	if (texture.size() == 0) {
+		return NULL;
+	}
+
+	return new MapCase(this, *(texture[rand() % texture.size()]));
 }

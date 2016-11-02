@@ -39,46 +39,19 @@ IsometricMap::~IsometricMap()
 
 void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 {
-	std::list<NPC *> npcs = DataContainer::getInstance()->npcs;
-	std::list<Item *> items = DataContainer::getInstance()->items;
 	bool already_displayed_main_character = false;
-	std::list<IObject *> sprite_to_display;
 
 	for (std::list<MapCase *>::iterator it = this->_container.begin(); it != this->_container.end(); ++it) {
 		if (Tool::isInBoundDataCoord((*it)->humanCoord, DataContainer::getInstance()->getMinCoordBound(), DataContainer::getInstance()->getMaxCoordBound())) {
+			(*it)->update();
+
 			window.draw((**it));
 
-			if (!already_displayed_main_character && DataContainer::getInstance()->main_character->getCurrentCase() &&
-					DataContainer::getInstance()->main_character->getCurrentCase()->id == (*it)->id) {
-				sprite_to_display.push_back(DataContainer::getInstance()->main_character);
-				already_displayed_main_character = true;
-			}
-
-			for (std::list<NPC *>::iterator npc = npcs.begin(); npc != npcs.end(); ++npc) {
-				// assume un pnj / case, careful
-				if ((*npc)->getCurrentCase() && (*npc)->getCurrentCase()->id == (*it)->id) {
-					sprite_to_display.push_back(*npc);
-					npcs.erase(npc);
-					break;
-				}
-			}
-
-			for (std::list<Item *>::iterator item = items.begin(); item != items.end(); ++item) {
-				// assume un obj / case, careful
-				if ((*item)->getCurrentCase() && (*item)->getCurrentCase()->id == (*it)->id) {
-					sprite_to_display.push_back(*item);
-					items.erase(item);
-					break;
-				}
-			}
-
-			// Spéciale dédicasse à Sacrefeu <3
-			sprite_to_display.sort([](const IObject *character_one, const IObject *character_two) {
-				return character_one->_position.x + character_one->_position.y < character_two->_position.x + character_two->_position.y;
-			});
-			for (std::list<IObject *>::iterator obj = sprite_to_display.begin(); obj != sprite_to_display.end(); ++obj) {
+			(*it)->sortObjects();
+			for (std::list<IObject *>::iterator obj = (*it)->getListCharacterOn().begin(); obj != (*it)->getListCharacterOn().end(); ++obj) {
 				DataContainer::getInstance()->window->draw(**obj);
 			}
+			(*it)->removeMainCharacter();
 		}
 	}
 }

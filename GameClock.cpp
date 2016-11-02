@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-GameClock::GameClock(const bool debug) : _debug(debug), _time(0), _frame(0), _lastTotalFrame(std::numeric_limits<int>::max())
+GameClock::GameClock(const bool debug) : is_paused(false), _debug(debug), _time(0), _total_time(0), _frame(0), _lastTotalFrame(std::numeric_limits<int>::max())
 {
 	if (!this->_font.loadFromFile("arial.ttf")) {
 		std::cerr << "Error while opening the font for debug" << std::endl;
@@ -23,14 +23,24 @@ GameClock::~GameClock()
 }
 
 void		GameClock::update(sf::Clock &clock) {
+	float ms_passed = clock.restart().asSeconds();
+
 	this->_frame++;
-	this->_time += clock.restart().asSeconds();
+	this->_time += ms_passed;
+	if (!this->is_paused) {
+		this->_total_time += ms_passed;
+	}
 
 	if (this->_time > 1.0f) {
 		this->_text.setString(std::to_string(this->_frame) + "FPS");
 		this->_lastTotalFrame = std::max(this->_frame, 1);
 		this->_frame = 0;
 		this->_time = 0.0f;
+	}
+
+	//x1000 To get seconds
+	if ((int)(this->_total_time) % 10 == 0) {
+		this->updateDayStatus();
 	}
 }
 
@@ -49,6 +59,11 @@ int GameClock::getLastTotalFrame() const
 	return this->_lastTotalFrame;
 }
 
+const sf::Color & GameClock::getColorOfDarkness() const
+{
+	return this->_darkness_of_day;
+}
+
 void GameClock::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	sf::View	v = target.getView();
@@ -57,4 +72,13 @@ void GameClock::draw(sf::RenderTarget & target, sf::RenderStates states) const
 	target.draw(this->_text);
 
 	target.setView(v);
+}
+
+void GameClock::updateDayStatus()
+{
+	unsigned char color = 255 - Tool::getPercentageDarknessFromTime(this->_total_time) * 80;
+
+	this->_darkness_of_day.r = color;
+	this->_darkness_of_day.g = color;
+	this->_darkness_of_day.b = color;
 }

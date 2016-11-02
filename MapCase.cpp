@@ -1,22 +1,6 @@
 #include "MapCase.hpp"
-// TMP
-#include <iostream>
 
 unsigned short MapCase::id_count = 1;
-
-/*MapCase::MapCase(const short & x, const short & y, const sf::Texture &texture)
-	: id(MapCase::id_count++), humanCoord(x, y), coord(x, y), _sprite(texture), depth(0), _up_case(NULL), _left_case(NULL), _right_case(NULL), _bottom_case(NULL)
-{
-	sf::Vector2u size = this->_sprite.getTexture()->getSize();
-	sf::Vector2f new_position(Tool::toWindowCoord(x, y, true));
-
-	this->_sprite.setRotation(ROTATION_TILE);
-	this->_sprite.setScale(sf::Vector2f(100.f / (float)size.x, 100.f / (float)size.y));
-	this->_sprite.setPosition(new_position);
-
-	// TMP - waiting loading map
-	this->depth = rand() % 11;
-}*/
 
 MapCase::MapCase(SaveMapCase *save_map_case, const sf::Texture &texture)
 	: id(save_map_case->id), humanCoord(save_map_case->x, save_map_case->y),
@@ -35,6 +19,23 @@ MapCase::~MapCase()
 {
 }
 
+void MapCase::update() {
+	this->_sprite.setColor(DataContainer::getInstance()->clock.getColorOfDarkness());
+
+	this->addShadowTile(
+		sf::Vector2<const short>(this->coord.x, this->coord.y),
+		Tool::toWindowCoord(this->coord.x, this->coord.y, true),
+		DataContainer::getInstance()->map->getShadowTile(),
+		DataContainer::getInstance()->light
+	);
+
+	sf::Color shadow_tile_color = Tool::getAverageColorShadowTile();
+
+	for (std::list<IObject *>::iterator it = this->_object_on_it.begin(); it != this->_object_on_it.end(); ++it) {
+		(*it)->update(/*shadow_tile_color*/);
+	}
+}
+
 void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 {
 	sf::Transform transform;
@@ -43,14 +44,7 @@ void MapCase::draw(sf::RenderTarget & target, sf::RenderStates states) const
 
 	target.draw(this->_sprite, transform);
 
-	this->addShadowTile(
-		target,
-		sf::Vector2<const short>(this->coord.x, this->coord.y),
-		Tool::toWindowCoord(this->coord.x, this->coord.y, true),
-		DataContainer::getInstance()->map->getShadowTile(),
-		DataContainer::getInstance()->light,
-		transform
-	);
+	target.draw(DataContainer::getInstance()->map->getShadowTile(), transform);
 
 	if (this->depth != 0) {
 		transform.scale(1, 1);
@@ -118,6 +112,33 @@ bool MapCase::isFullyLinked() const
 	return this->_bottom_case && this->_left_case && this->_right_case && this->_up_case;
 }
 
+void MapCase::addObject(IObject *obj)
+{
+	this->_object_on_it.push_back(obj);
+}
+
+void MapCase::sortObjects()
+{
+	// Spéciale dédicasse à Sacrefeu <3 #nohomo
+	this->_object_on_it.sort([](const IObject *character_one, const IObject *character_two) {
+		return character_one->_position.x + character_one->_position.y < character_two->_position.x + character_two->_position.y;
+	});
+}
+
+void MapCase::removeMainCharacter()
+{
+	std::list<IObject *>::iterator it = std::find(this->_object_on_it.begin(), this->_object_on_it.end(), DataContainer::getInstance()->main_character);
+
+	if (it != this->_object_on_it.end()) {
+		this->_object_on_it.erase(it);
+	}
+}
+
+std::list<IObject*> &MapCase::getListCharacterOn()
+{
+	return this->_object_on_it;
+}
+
 sf::Color		MapCase::calcLightColor(const short &posX, const short &posY, const GlobalLight &light) const {
 	float			distX = 0.0f;
 	float			distY = 0.0f;
@@ -160,7 +181,7 @@ bool MapCase::linkCases(MapCase *case_one, MapCase *case_two)
 }
 
 
-void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const short> &real_position, const sf::Vector2f &position, sf::VertexArray &shadowTile, const GlobalLight &light, const sf::Transform &transform) const
+void		MapCase::addShadowTile(const sf::Vector2<const short> &real_position, const sf::Vector2f &position, sf::VertexArray &shadowTile, const GlobalLight &light) const
 {
 	shadowTile[0].color = this->calcLightColor(real_position.x, real_position.y, light);
 	shadowTile[1].color = this->calcLightColor(real_position.x + 1, real_position.y, light);
@@ -173,8 +194,6 @@ void		MapCase::addShadowTile(sf::RenderTarget &window, const sf::Vector2<const s
 		shadowTile[1].position = sf::Vector2f(position.x + (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height) / 2);
 		shadowTile[2].position = sf::Vector2f(position.x, position.y + (this->_sprite.getGlobalBounds().height));
 		shadowTile[3].position = sf::Vector2f(position.x - (this->_sprite.getGlobalBounds().width) / 2, position.y + (this->_sprite.getGlobalBounds().height) / 2);
-
-		window.draw(shadowTile, transform);
 	}
 }
 
