@@ -13,6 +13,7 @@ class MapCase;
 #define ROTATION_TILE 45
 #define DEPTH_SIZE 10
 #define TEXTURE_SET_NAME "SET_NAME="
+#define WINDOW_NAME "Creons un jeu S01"
 
 #define M_PI 3.14159265358979323846
 

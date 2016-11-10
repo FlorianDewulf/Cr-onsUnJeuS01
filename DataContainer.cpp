@@ -3,13 +3,14 @@
 DataContainer *DataContainer::_instance;
 
 
-DataContainer::DataContainer() : window(NULL), map(NULL), keyboard(NULL), clock(true), load_manager(new LoadManager())
+DataContainer::DataContainer() : map(NULL), keyboard(NULL), clock(true), load_manager(new LoadManager())
 {
+	this->config_lexer.openFile("config/general_config.conf");
+	this->config_lexer.process();
 }
 
 DataContainer & DataContainer::operator=(const DataContainer &old_data)
 {
-	this->window = old_data.window;
 	this->light.coord = old_data.light.coord;
 	this->map = old_data.map;
 
@@ -18,7 +19,6 @@ DataContainer & DataContainer::operator=(const DataContainer &old_data)
 
 DataContainer::DataContainer(const DataContainer &old_data) : clock(true)
 {
-	this->window = old_data.window;
 	this->light.coord = old_data.light.coord;
 	this->map = old_data.map;
 }
@@ -39,9 +39,12 @@ DataContainer *DataContainer::getInstance()
 	return DataContainer::_instance;
 }
 
-void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase*> *list)
+void		DataContainer::init(std::list<MapCase*> *list)
 {
-	this->window = new_window;
+	this->window.create(
+		sf::VideoMode(this->config_lexer.getNumberValue("RESOLUTION_WIDTH"), this->config_lexer.getNumberValue("RESOLUTION_HEIGHT")),
+		WINDOW_NAME
+	);
 	this->map = new IsometricMap(list);
 	this->keyboard = new KeyboardManager();
 	this->main_character = new CharacterSprite();
@@ -61,14 +64,14 @@ void		DataContainer::init(sf::RenderWindow * const new_window, std::list<MapCase
 
 void DataContainer::draw()
 {
-	this->window->clear();
-	this->map->renderMap(*(this->window), this->light);
+	this->window.clear();
+	this->map->renderMap(this->window, this->light);
 
 	if (this->clock.isDebugEnable()) {
-		this->window->draw(this->clock);
+		this->window.draw(this->clock);
 	}
 
-	this->window->display();
+	this->window.display();
 }
 
 void DataContainer::update()
@@ -94,9 +97,9 @@ sf::Vector2i DataContainer::getMaxCoordBound() const
 
 void DataContainer::_updateView()
 {
-	sf::View view = this->window->getView();
+	sf::View view = this->window.getView();
 	view.setCenter(Tool::toWindowCoord(this->light.coord.x, this->light.coord.y));
-	this->window->setView(view);
+	this->window.setView(view);
 
 	sf::Vector2i tmp_up_left = Tool::toDataCoord(view.getCenter().x - (view.getSize().x / 2), view.getCenter().y - (view.getSize().y / 2), false);
 	sf::Vector2i tmp_up_right = Tool::toDataCoord(view.getCenter().x + (view.getSize().x / 2), view.getCenter().y - (view.getSize().y / 2), false);

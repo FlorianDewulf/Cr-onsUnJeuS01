@@ -2,7 +2,7 @@
 #include <iostream>
 
 
-GameClock::GameClock(const bool debug) : is_paused(false), _debug(debug), _time(0), _total_time(0), _frame(0), _lastTotalFrame(std::numeric_limits<int>::max())
+GameClock::GameClock(const bool debug) : is_paused(false), _debug(debug), _time(0), _total_time(0), _frame(0), _lastTotalFrame(std::numeric_limits<int>::max()), _darkness_of_day(sf::Color::White)
 {
 	if (!this->_font.loadFromFile("arial.ttf")) {
 		std::cerr << "Error while opening the font for debug" << std::endl;

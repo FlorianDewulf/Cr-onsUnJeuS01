@@ -17,9 +17,14 @@ void IObject::update()
 
 void IObject::update(const sf::Color &color)
 {
-	sf::Color darkness_color = DataContainer::getInstance()->clock.getColorOfDarkness();
+	sf::Color shadow = DataContainer::getInstance()->clock.getColorOfDarkness() - color;
 
-	this->_character_sprite.setColor(sf::Color(color.r & darkness_color.r, color.g & darkness_color.g, color.b & darkness_color.b, 255));
+	if (shadow.r < 180) {
+		std::cout << this->_currentCase->id << std::endl;
+		std::cout << (int)color.r << ", " << (int)color.g << ", " << (int)color.b << std::endl;
+	}
+
+	this->_character_sprite.setColor(shadow);
 }
 
 MapCase * IObject::getCurrentCase() const

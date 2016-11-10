@@ -1,5 +1,7 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include <string>
+#include <map>
 
 enum KeyConstants {
 	FORWARD = 1,

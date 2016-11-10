@@ -26,7 +26,7 @@ public:
 
 private:
 	virtual void	draw(sf::RenderTarget& target, sf::RenderStates states) const;
-	void			addShadowTile(const sf::Vector2<const short> &, const sf::Vector2f &, sf::VertexArray &, const GlobalLight &) const;
+	void			addShadowTile(const sf::Vector2<const short> &, const sf::Vector2f &, sf::VertexArray &, const GlobalLight &);
 	void			addDepthTile(sf::RenderTarget &, const sf::Vector2f &, sf::VertexArray &, const sf::Transform &) const;
 
 	// GETTER & SETTER & VALIDATION
@@ -66,5 +66,6 @@ private:
 	MapCase					*_right_case;
 	MapCase					*_bottom_case;
 	std::list<IObject *>	_object_on_it;
+	bool					_has_shadow_to_draw;
 };
 

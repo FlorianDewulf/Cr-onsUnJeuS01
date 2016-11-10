@@ -1,8 +1,19 @@
 #include "KeyboardManager.hpp"
-#include <iostream>
 
 KeyboardManager::KeyboardManager()
 {
+	this->string_mapping["Z"] = sf::Keyboard::Z;
+	this->string_mapping["Q"] = sf::Keyboard::Q;
+	this->string_mapping["S"] = sf::Keyboard::S;
+	this->string_mapping["D"] = sf::Keyboard::D;
+	this->string_mapping["Up"] = sf::Keyboard::Up;
+	this->string_mapping["Down"] = sf::Keyboard::Down;
+	this->string_mapping["Left"] = sf::Keyboard::Left;
+	this->string_mapping["Right"] = sf::Keyboard::Right;
+	this->string_mapping["Escape"] = sf::Keyboard::Escape;
+	this->string_mapping["Plus"] = sf::Keyboard::Add;
+	this->string_mapping["Minus"] = sf::Keyboard::Subtract;
+
 	this->input_mapping[sf::Keyboard::Z] = FORWARD;
 	this->input_mapping[sf::Keyboard::Up] = FORWARD;
 	this->input_mapping[sf::Keyboard::S] = BACKWARD;
@@ -71,6 +82,15 @@ std::list<KeyConstants> KeyboardManager::getActions() const
 	return this->actions;
 }
 
+sf::Keyboard::Key KeyboardManager::getKey(const std::string &key) const
+{
+	std::map<std::string, sf::Keyboard::Key>::const_iterator it = this->string_mapping.find(key);
+	if (it != this->string_mapping.end()) {
+		return it->second;
+	}
+	return sf::Keyboard::Home;
+}
+
 /**
  * Private
  * Method for the method pointer
@@ -130,21 +150,21 @@ void KeyboardManager::moveRight(void *data) const
 
 void KeyboardManager::closeWindow(void *data) const
 {
-	DataContainer::getInstance()->window->close();
+	DataContainer::getInstance()->window.close();
 }
 
 void KeyboardManager::zoom(void *data) const
 {
-	sf::View v = DataContainer::getInstance()->window->getView();
+	sf::View v = DataContainer::getInstance()->window.getView();
 	v.zoom(std::min(0.98f, 0.98f + (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame())));
-	DataContainer::getInstance()->window->setView(v);
+	DataContainer::getInstance()->window.setView(v);
 }
 
 void KeyboardManager::unzoom(void *data) const
 {
-	sf::View v = DataContainer::getInstance()->window->getView();
+	sf::View v = DataContainer::getInstance()->window.getView();
 	v.zoom(1.02f + (1.f / (float)DataContainer::getInstance()->clock.getLastTotalFrame()));
-	DataContainer::getInstance()->window->setView(v);
+	DataContainer::getInstance()->window.setView(v);
 }
 
 void KeyboardManager::fire(void *data) const

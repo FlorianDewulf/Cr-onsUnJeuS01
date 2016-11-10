@@ -165,6 +165,8 @@
     <ClCompile Include="ACharacter.cpp" />
     <ClCompile Include="AFileManager.cpp" />
     <ClCompile Include="CharacterSprite.cpp" />
+    <ClCompile Include="ConfigLexer.cpp" />
+    <ClCompile Include="CoreController.cpp" />
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GlobalLight.cpp" />
@@ -193,6 +195,8 @@
     <ClInclude Include="ACharacter.hpp" />
     <ClInclude Include="AFileManager.hpp" />
     <ClInclude Include="CharacterSprite.hpp" />
+    <ClInclude Include="ConfigLexer.hpp" />
+    <ClInclude Include="CoreController.hpp" />
     <ClInclude Include="DataContainer.hpp" />
     <ClInclude Include="GameClock.hpp" />
     <ClInclude Include="GlobalLight.hpp" />

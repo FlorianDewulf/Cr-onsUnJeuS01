@@ -19,6 +19,8 @@ public:
 	void		eventInterpreter();
 
 	std::list<KeyConstants> getActions() const;
+	sf::Keyboard::Key		getKey(const std::string &) const;
+	void					assignKey(sf::Keyboard::Key);
 
 /**
  * Method for the method pointer
@@ -37,8 +39,8 @@ private:
 	void		slime(void * data) const;
 
 private:
+	std::map<const std::string, sf::Keyboard::Key>					string_mapping;
 	std::map<sf::Keyboard::Key, KeyConstants>						input_mapping;
 	std::list<KeyConstants>											actions;
 	std::map<KeyConstants, void (KeyboardManager::*)(void *) const> process_method_map;
 };
-

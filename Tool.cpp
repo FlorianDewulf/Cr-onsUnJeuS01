@@ -78,18 +78,14 @@ namespace Tool {
 
 	sf::Color getAverageColorShadowTile()
 	{
-		/*return sf::Color(
-			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.r + DataContainer::getInstance()->map->getShadowTile()[1].color.r + DataContainer::getInstance()->map->getShadowTile()[2].color.r + DataContainer::getInstance()->map->getShadowTile()[3].color.r) / 4.f),
-			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.g + DataContainer::getInstance()->map->getShadowTile()[1].color.g + DataContainer::getInstance()->map->getShadowTile()[2].color.g + DataContainer::getInstance()->map->getShadowTile()[3].color.g) / 4.f),
-			(unsigned char)((float)(DataContainer::getInstance()->map->getShadowTile()[0].color.b + DataContainer::getInstance()->map->getShadowTile()[1].color.b + DataContainer::getInstance()->map->getShadowTile()[2].color.b + DataContainer::getInstance()->map->getShadowTile()[3].color.b) / 4.f),
-			255
-			);*/
-		return sf::Color(
-			DataContainer::getInstance()->map->getShadowTile()[0].color.r | DataContainer::getInstance()->map->getShadowTile()[1].color.r | DataContainer::getInstance()->map->getShadowTile()[2].color.r | DataContainer::getInstance()->map->getShadowTile()[3].color.r,
-			DataContainer::getInstance()->map->getShadowTile()[0].color.g | DataContainer::getInstance()->map->getShadowTile()[1].color.g | DataContainer::getInstance()->map->getShadowTile()[2].color.g | DataContainer::getInstance()->map->getShadowTile()[3].color.g,
-			DataContainer::getInstance()->map->getShadowTile()[0].color.b | DataContainer::getInstance()->map->getShadowTile()[1].color.b | DataContainer::getInstance()->map->getShadowTile()[2].color.b | DataContainer::getInstance()->map->getShadowTile()[3].color.b,
-			255
-		);
+		sf::VertexArray &vertex = DataContainer::getInstance()->map->getShadowTile();
+		sf::Color color;
+
+		color.r = (vertex[0].color.r + vertex[1].color.r + vertex[2].color.r + vertex[3].color.r) / 4;
+		color.g = (vertex[0].color.g + vertex[1].color.g + vertex[2].color.g + vertex[3].color.g) / 4;
+		color.b = (vertex[0].color.b + vertex[1].color.b + vertex[2].color.b + vertex[3].color.b) / 4;
+
+		return color;
 	}
 
 

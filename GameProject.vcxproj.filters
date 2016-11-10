@@ -37,6 +37,24 @@
     <Filter Include="Fichiers sources\Interfaces">
       <UniqueIdentifier>{5e70d93d-570e-48fa-a1d9-31298f2766df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\Abstract">
+      <UniqueIdentifier>{31dcf3ec-24d2-43da-b668-785f390fd5fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Core">
+      <UniqueIdentifier>{95f3b522-ad34-40de-8860-45bea1451d4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Graphics">
+      <UniqueIdentifier>{8414995d-ff99-4bba-bbd4-ef38a97d842f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Interfaces">
+      <UniqueIdentifier>{3d9cdcee-46f6-4637-b398-a66ae8093b6a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Models">
+      <UniqueIdentifier>{788c88d1-6d04-4ae4-9e1d-8669a0e37b52}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\Tools">
+      <UniqueIdentifier>{88a22bf8-d5f5-49cd-9e89-9316edb58462}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\tiles\sol.jpg">
@@ -113,72 +131,84 @@
     <ClCompile Include="TextureLexer.cpp">
       <Filter>Fichiers sources\Core</Filter>
     </ClCompile>
+    <ClCompile Include="ConfigLexer.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="CoreController.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="IsometricMap.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="MapCase.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="GlobalLight.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="DataContainer.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Tool.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="KeyboardManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Enum.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="CharacterSprite.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="GameClock.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="SaveMapCase.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="ACharacter.hpp">
+      <Filter>Fichiers d%27en-tête\Abstract</Filter>
     </ClInclude>
     <ClInclude Include="AFileManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Abstract</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="GameClock.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardManager.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadManager.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
     <ClInclude Include="MusicManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveManager.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
     <ClInclude Include="SoundManager.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
-    <ClInclude Include="NPC.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="ACharacter.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Item.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="IObject.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+    <ClInclude Include="TextureManager.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
     </ClInclude>
     <ClInclude Include="TextureLexer.hpp">
+      <Filter>Fichiers d%27en-tête\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterSprite.hpp">
+      <Filter>Fichiers d%27en-tête\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="MapCase.hpp">
+      <Filter>Fichiers d%27en-tête\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="IObject.hpp">
+      <Filter>Fichiers d%27en-tête\Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="GlobalLight.hpp">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="IsometricMap.hpp">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Item.hpp">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="NPC.hpp">
+      <Filter>Fichiers d%27en-tête\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="DataContainer.hpp">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Enum.hpp">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveMapCase.hpp">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Tool.hpp">
+      <Filter>Fichiers d%27en-tête\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ConfigLexer.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="CoreController.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>

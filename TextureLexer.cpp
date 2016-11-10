@@ -24,7 +24,7 @@ void TextureLexer::process()
 			std::getline(this->_file, line);
 			this->trim(line);
 
-			tmp_set = this->lex_set_name(line);
+			tmp_set = this->getValueFromKey(line, TEXTURE_SET_NAME);
 			if (!tmp_set.empty()) {
 				current_set = tmp_set;
 			} else if (!current_set.empty()) {
@@ -34,16 +34,6 @@ void TextureLexer::process()
 	}
 }
 
-std::string TextureLexer::lex_set_name(std::string & line) const
-{
-	std::size_t found = line.find(TEXTURE_SET_NAME);
-	if (found != 0) {
-		return "";
-	}
-
-	return line.substr(strlen(TEXTURE_SET_NAME));
-}
-
 void TextureLexer::lex_resources(std::string & filename, const std::string &key_name)
 {
 	std::ifstream file(filename.c_str());
@@ -51,19 +41,6 @@ void TextureLexer::lex_resources(std::string & filename, const std::string &key_
 	if (!file.fail()) {
 		this->_texture_config[key_name].push_back(filename);
 	}
-}
-
-void TextureLexer::trim(std::string &str)
-{
-	unsigned int begin;
-
-	for (begin = 0; begin < str.size(); ++begin) {
-		if (str[begin] != ' ' && str[begin] != '\t') {
-			break;
-		}
-	}
-
-	str.erase(0, begin);
 }
 
 void TextureLexer::loadSet(const std::string str)

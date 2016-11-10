@@ -49,7 +49,7 @@ void IsometricMap::renderMap(sf::RenderWindow &window, const GlobalLight &light)
 
 			(*it)->sortObjects();
 			for (std::list<IObject *>::iterator obj = (*it)->getListCharacterOn().begin(); obj != (*it)->getListCharacterOn().end(); ++obj) {
-				DataContainer::getInstance()->window->draw(**obj);
+				DataContainer::getInstance()->window.draw(**obj);
 			}
 			(*it)->removeMainCharacter();
 		}

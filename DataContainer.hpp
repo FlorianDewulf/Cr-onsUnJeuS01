@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "CharacterSprite.hpp"
+#include "ConfigLexer.hpp"
 #include "IsometricMap.hpp"
 #include "GameClock.hpp"
 #include "GlobalLight.hpp"
@@ -13,6 +14,7 @@
 #include "TextureManager.hpp"
 
 class CharacterSprite;
+class ConfigLexer;
 class GameClock;
 class GlobalLight;
 class IsometricMap;
@@ -27,7 +29,7 @@ class DataContainer
 public:
 	static DataContainer	*getInstance();
 
-	void			init(sf::RenderWindow * const, std::list<MapCase*> *);
+	void			init(std::list<MapCase*> *);
 	void			update();
 	void			draw();
 
@@ -35,7 +37,8 @@ public:
 	sf::Vector2i	getMaxCoordBound() const;
 
 public:
-	sf::RenderWindow		*window;
+	sf::RenderWindow		window;
+	ConfigLexer				config_lexer;
 	GlobalLight				light;
 	IsometricMap			*map;
 	CharacterSprite			*main_character;

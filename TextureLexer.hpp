@@ -19,9 +19,7 @@ public:
 	void						loadSet(const std::string);
 
 private:
-	std::string					lex_set_name(std::string &) const;
 	void						lex_resources(std::string &, const std::string &);
-	void						trim(std::string &);
 
 private:
 	std::vector<sf::Texture *>	_loaded_texture;
