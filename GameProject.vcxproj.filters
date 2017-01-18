@@ -224,6 +224,15 @@
     <ClCompile Include="AMenuArrow.cpp">
       <Filter>Fichiers sources\Menuing\Elements</Filter>
     </ClCompile>
+    <ClCompile Include="ABasicElement.cpp">
+      <Filter>Fichiers sources\Menuing\Abstract</Filter>
+    </ClCompile>
+    <ClCompile Include="MenuManager.cpp">
+      <Filter>Fichiers sources\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="InputStorage.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -349,9 +358,6 @@
     <ClInclude Include="MenuTextSelect.hpp">
       <Filter>Fichiers d%27en-tête\Menuing\Elements</Filter>
     </ClInclude>
-    <ClInclude Include="MenuImage.h">
-      <Filter>Fichiers d%27en-tête\Menuing\Elements</Filter>
-    </ClInclude>
     <ClInclude Include="MenuText.hpp">
       <Filter>Fichiers d%27en-tête\Menuing\Elements</Filter>
     </ClInclude>
@@ -360,6 +366,18 @@
     </ClInclude>
     <ClInclude Include="AMenuArrow.hpp">
       <Filter>Fichiers d%27en-tête\Menuing\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="ABasicElement.hpp">
+      <Filter>Fichiers d%27en-tête\Menuing\Abstract</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuImage.hpp">
+      <Filter>Fichiers d%27en-tête\Menuing\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="MenuManager.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="InputStorage.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

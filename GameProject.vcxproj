@@ -168,6 +168,7 @@
     <ClCompile Include="AFileManager.cpp" />
     <ClCompile Include="AInputable.cpp" />
     <ClCompile Include="AMenuArrow.cpp" />
+    <ClCompile Include="ABasicElement.cpp" />
     <ClCompile Include="AScrollable.cpp" />
     <ClCompile Include="ASelectable.cpp" />
     <ClCompile Include="AWindow.cpp" />
@@ -177,6 +178,7 @@
     <ClCompile Include="DataContainer.cpp" />
     <ClCompile Include="GameClock.cpp" />
     <ClCompile Include="GlobalLight.cpp" />
+    <ClCompile Include="InputStorage.cpp" />
     <ClCompile Include="IObject.cpp" />
     <ClCompile Include="IsometricMap.cpp" />
     <ClCompile Include="Item.cpp" />
@@ -188,6 +190,7 @@
     <ClCompile Include="MenuImage.cpp" />
     <ClCompile Include="MenuImageButton.cpp" />
     <ClCompile Include="MenuInput.cpp" />
+    <ClCompile Include="MenuManager.cpp" />
     <ClCompile Include="MenuScrollbar.cpp" />
     <ClCompile Include="MenuSliderSelect.cpp" />
     <ClCompile Include="MenuText.cpp" />
@@ -219,6 +222,7 @@
     <ClInclude Include="AFileManager.hpp" />
     <ClInclude Include="AInputable.hpp" />
     <ClInclude Include="AMenuArrow.hpp" />
+    <ClInclude Include="ABasicElement.hpp" />
     <ClInclude Include="AScrollable.hpp" />
     <ClInclude Include="ASelectable.hpp" />
     <ClInclude Include="AWindow.hpp" />
@@ -229,6 +233,7 @@
     <ClInclude Include="GameClock.hpp" />
     <ClInclude Include="GlobalLight.hpp" />
     <ClInclude Include="Enum.hpp" />
+    <ClInclude Include="InputStorage.hpp" />
     <ClInclude Include="IObject.hpp" />
     <ClInclude Include="IsometricMap.hpp" />
     <ClInclude Include="Item.hpp" />
@@ -236,9 +241,10 @@
     <ClInclude Include="LoadManager.hpp" />
     <ClInclude Include="MapCase.hpp" />
     <ClInclude Include="MenuColorSelect.hpp" />
-    <ClInclude Include="MenuImage.h" />
+    <ClInclude Include="MenuImage.hpp" />
     <ClInclude Include="MenuImageButton.hpp" />
     <ClInclude Include="MenuInput.hpp" />
+    <ClInclude Include="MenuManager.hpp" />
     <ClInclude Include="MenuScrollbar.hpp" />
     <ClInclude Include="MenuSliderSelect.hpp" />
     <ClInclude Include="MenuText.hpp" />

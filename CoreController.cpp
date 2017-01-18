@@ -28,14 +28,17 @@ void CoreController::process()
 		sf::Event event;
 
 		data->clock.update(clock);
+		this->input_store.cleanScroll();
 		while (data->window.pollEvent(event))
 		{
-			if (event.type == sf::Event::Closed) {
+			if (!this->input_store.addEvent(event)) {
 				data->window.close();
+				return;
 			}
-
-			data->keyboard->eventStorage(event);
 		}
+
+		data->keyboard->eventStorage(this->input_store.getKeyEventsForKeyboard());
+		this->menu_manager.processEvents(this->input_store);
 
 		data->update();
 		data->draw();

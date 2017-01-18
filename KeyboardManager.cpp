@@ -51,22 +51,16 @@ KeyboardManager::~KeyboardManager()
 {
 }
 
-void KeyboardManager::eventStorage(const sf::Event &event)
+void KeyboardManager::eventStorage(const std::list<sf::Event> &event_list)
 {
+	this->actions.clear();
 	std::list<KeyConstants>::iterator ptr;
 
-	if (event.type == sf::Event::KeyPressed) {
+	for (std::list<sf::Event>::const_iterator event = event_list.begin(); event != event_list.end(); ++event) {
 		for (std::map<sf::Keyboard::Key, KeyConstants>::iterator it = this->input_mapping.begin(); it != this->input_mapping.end(); ++it) {
-			if (event.key.code == it->first && (ptr = find(this->actions.begin(), this->actions.end(), it->second)) == this->actions.end()) {
+			if (event->key.code == it->first && (ptr = find(this->actions.begin(), this->actions.end(), it->second)) == this->actions.end()) {
 				this->actions.push_back(it->second);
-				return;
-			}
-		}
-	} else if (event.type == sf::Event::KeyReleased) {
-		for (std::map<sf::Keyboard::Key, KeyConstants>::iterator it = this->input_mapping.begin(); it != this->input_mapping.end(); ++it) {
-			if (event.key.code == it->first && (ptr = find(this->actions.begin(), this->actions.end(), it->second)) != this->actions.end()) {
-				this->actions.erase(ptr);
-				return;
+				break;;
 			}
 		}
 	}
