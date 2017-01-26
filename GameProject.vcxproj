@@ -164,14 +164,16 @@
   <ItemGroup>
     <ClCompile Include="AButton.cpp" />
     <ClCompile Include="ACharacter.cpp" />
-    <ClCompile Include="AClickable.cpp" />
+    <ClCompile Include="ATrigger.cpp" />
+    <ClCompile Include="AWindow.cpp" />
+    <ClCompile Include="Clickable.cpp" />
     <ClCompile Include="AFileManager.cpp" />
-    <ClCompile Include="AInputable.cpp" />
+    <ClCompile Include="Inputable.cpp" />
     <ClCompile Include="AMenuArrow.cpp" />
     <ClCompile Include="ABasicElement.cpp" />
-    <ClCompile Include="AScrollable.cpp" />
-    <ClCompile Include="ASelectable.cpp" />
-    <ClCompile Include="AWindow.cpp" />
+    <ClCompile Include="Scrollable.cpp" />
+    <ClCompile Include="Selectable.cpp" />
+    <ClCompile Include="ClosedWindow.cpp" />
     <ClCompile Include="CharacterSprite.cpp" />
     <ClCompile Include="ConfigLexer.cpp" />
     <ClCompile Include="CoreController.cpp" />
@@ -218,14 +220,16 @@
   <ItemGroup>
     <ClInclude Include="AButton.hpp" />
     <ClInclude Include="ACharacter.hpp" />
-    <ClInclude Include="AClickable.hpp" />
+    <ClInclude Include="ATrigger.hpp" />
+    <ClInclude Include="AWindow.hpp" />
+    <ClInclude Include="Clickable.hpp" />
     <ClInclude Include="AFileManager.hpp" />
-    <ClInclude Include="AInputable.hpp" />
+    <ClInclude Include="Inputable.hpp" />
     <ClInclude Include="AMenuArrow.hpp" />
     <ClInclude Include="ABasicElement.hpp" />
-    <ClInclude Include="AScrollable.hpp" />
-    <ClInclude Include="ASelectable.hpp" />
-    <ClInclude Include="AWindow.hpp" />
+    <ClInclude Include="Scrollable.hpp" />
+    <ClInclude Include="Selectable.hpp" />
+    <ClInclude Include="ClosedWindow.hpp" />
     <ClInclude Include="CharacterSprite.hpp" />
     <ClInclude Include="ConfigLexer.hpp" />
     <ClInclude Include="CoreController.hpp" />

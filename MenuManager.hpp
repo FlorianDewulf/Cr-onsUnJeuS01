@@ -1,10 +1,7 @@
 #pragma once
 #include <queue>
 #include "ABasicElement.hpp"
-#include "AClickable.hpp"
-#include "AInputable.hpp"
-#include "ASelectable.hpp"
-#include "AScrollable.hpp"
+#include "AWindow.hpp"
 #include "DataContainer.hpp"
 #include "InputStorage.hpp"
 
@@ -18,9 +15,11 @@ public:
 
 public:
 	void	processEvents(InputStorage &);
+	void	clearWindows();
 	bool	resetWindows();
+	void	draw();
 
-protected:
+public:
 	std::list<ABasicElement *>	_menu_elements;
 	std::list<ABasicElement *>	_already_process;
 };

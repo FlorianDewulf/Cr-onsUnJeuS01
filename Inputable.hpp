@@ -1,11 +1,11 @@
 #pragma once
-#include "ABasicElement.hpp"
+#include "ATrigger.hpp"
 
-class AInputable : public ABasicElement
+class Inputable : public ATrigger
 {
 public:
-	AInputable();
-	virtual ~AInputable();
+	Inputable();
+	virtual ~Inputable();
 
 public:
 	virtual bool	isInputable() const;

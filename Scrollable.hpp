@@ -1,11 +1,11 @@
 #pragma once
-#include "ABasicElement.hpp"
+#include "ATrigger.hpp"
 
-class AScrollable : public ABasicElement
+class Scrollable : public ATrigger
 {
 public:
-	AScrollable();
-	virtual ~AScrollable();
+	Scrollable();
+	virtual ~Scrollable();
 
 public:
 	virtual bool	isScrollable() const;
