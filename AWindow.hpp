@@ -13,5 +13,6 @@ public:
 protected:
 	sf::RectangleShape	_background;
 	unsigned char		_to_close;
+	sf::View			_view;
 };
 

@@ -243,7 +243,7 @@
       <Filter>Fichiers sources\Menuing\Triggers</Filter>
     </ClCompile>
     <ClCompile Include="AWindow.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\Menuing\Abstract</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -395,7 +395,7 @@
       <Filter>Fichiers d%27en-tête\Menuing\Triggers</Filter>
     </ClInclude>
     <ClInclude Include="AWindow.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\Menuing\Abstract</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

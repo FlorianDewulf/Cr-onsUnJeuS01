@@ -38,7 +38,7 @@ MenuWindowDialog::MenuWindowDialog(ACharacter *character_one, ACharacter *charac
 
 MenuWindowDialog::~MenuWindowDialog()
 {
-	std::cout << "delete ?" << std::endl;
+	std::cout << "Destructeur menu window dialog" << std::endl;
 }
 
 void MenuWindowDialog::draw(sf::RenderTarget& target, sf::RenderStates states) const

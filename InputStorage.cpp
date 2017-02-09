@@ -1,4 +1,5 @@
 #include "InputStorage.hpp"
+#include <iostream>
 
 InputStorage::InputStorage()
 {

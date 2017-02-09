@@ -19,7 +19,6 @@ private:
 	bool								_nextText();
 
 private:
-	sf::View							_view;
 	std::vector<std::string>			&_texts;
 	/*std::vector<std::string>::iterator*/int	_index;
 	MenuText							_dialog_text;

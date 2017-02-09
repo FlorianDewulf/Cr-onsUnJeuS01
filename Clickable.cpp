@@ -11,7 +11,7 @@ Clickable::Clickable(const sf::Vector2i &position, const sf::Vector2i &size) : _
 
 Clickable::~Clickable()
 {
-	std::cout << "aclickable" << std::endl;
+	std::cout << "clickable delete" << std::endl;
 }
 
 bool Clickable::isClickable() const
@@ -29,7 +29,7 @@ void Clickable::setHitbox(const sf::Vector2f & position, const sf::Vector2f & si
 	this->_hitbox.left		= position.x;
 	this->_hitbox.top		= position.y;
 	this->_hitbox.width		= size.x;
-	this->_hitbox.height	= size.x;
+	this->_hitbox.height	= size.y;
 }
 
 bool Clickable::click(const sf::Event &event)

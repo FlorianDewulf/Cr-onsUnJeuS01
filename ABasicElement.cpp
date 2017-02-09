@@ -2,7 +2,7 @@
 #include <iostream>
 
 ABasicElement::ABasicElement(const unsigned char flag)
-	: _click_trigger(NULL), _input_trigger(NULL), _scroll_trigger(NULL), _select_trigger(NULL), _window_trigger(NULL)
+	: _do_close(false), _click_trigger(NULL), _input_trigger(NULL), _scroll_trigger(NULL), _select_trigger(NULL), _window_trigger(NULL)
 {
 	if (flag & FLAG_EVENT::CLICKABLE) {
 		this->_click_trigger = new Clickable();
@@ -95,6 +95,11 @@ void ABasicElement::setClickHitbox(const sf::Vector2f position, const sf::Vector
 }
 
 /* is... */
+
+bool ABasicElement::doClose() const
+{
+	return this->_do_close;
+}
 
 bool ABasicElement::isClickable() const
 {

@@ -1,4 +1,5 @@
 #include "AWindow.hpp"
+#include <iostream>
 
 AWindow::AWindow(const unsigned char flag, const sf::Vector2f position, const sf::Vector2f size)
 	: ABasicElement(FLAG_EVENT::CLOSED_WINDOW | flag), _background(size), _to_close(WINDOW_DEFAULT)
@@ -9,9 +10,10 @@ AWindow::AWindow(const unsigned char flag, const sf::Vector2f position, const sf
 
 AWindow::~AWindow()
 {
+	std::cout << "Destructeur awindow" << std::endl;
 }
 
 bool AWindow::isDeletable()
 {
-	return this->_to_close == CLOSED_WINDOW;
+	return this->_to_close == WINDOW_TO_DELETE;
 }

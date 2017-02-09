@@ -34,7 +34,7 @@ KeyboardManager::KeyboardManager(const std::map<std::string, std::string> &confi
 	this->process_method_map[BACKWARD] = &KeyboardManager::moveBackward;
 	this->process_method_map[LEFT] = &KeyboardManager::moveLeft;
 	this->process_method_map[RIGHT] = &KeyboardManager::moveRight;
-	this->process_method_map[ESCAPE] = &KeyboardManager::closeWindow;
+	//this->process_method_map[ESCAPE] = &KeyboardManager::closeWindow;
 	this->process_method_map[PLUS] = &KeyboardManager::zoom;
 	this->process_method_map[MINUS] = &KeyboardManager::unzoom;
 	this->process_method_map[FIRE] = &KeyboardManager::fire;

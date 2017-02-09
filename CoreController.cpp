@@ -1,4 +1,5 @@
 #include "CoreController.hpp"
+#include "MenuWindowAlert.hpp"
 #include "MenuWindowDialog.hpp"
 
 CoreController::CoreController()
@@ -34,9 +35,11 @@ void CoreController::process()
 	tutu.push_back("Ceci marche");
 	tutu.push_back("Ca va disparaitre");
 
-	MenuWindowDialog toto(data->npcs.front(), data->main_character, tutu);
+	//MenuWindowDialog	*toto	= new MenuWindowDialog(data->npcs.front(), data->main_character, tutu);
+	MenuWindowAlert		*alert	= new MenuWindowAlert();
 
-	this->menu_manager._menu_elements.push_back(&toto);
+	//this->menu_manager._menu_elements.push_back(toto);
+	this->menu_manager._menu_elements.push_back(alert);
 
 	/* test */
 
@@ -46,9 +49,7 @@ void CoreController::process()
 
 		data->clock.update(clock);
 		this->input_store.cleanScroll();
-		std::cout << "precoucou 1" << std::endl;
 		this->menu_manager.resetWindows();
-		std::cout << "precoucou 2" << std::endl;
 		while (data->window.pollEvent(event))
 		{
 			if (!this->input_store.addEvent(event)) {
@@ -58,17 +59,15 @@ void CoreController::process()
 		}
 
 		data->keyboard->eventStorage(this->input_store.getKeyEventsForKeyboard());
-		std::cout << "coucou 1" << std::endl;
-		this->menu_manager.processEvents(this->input_store);
-		std::cout << "coucou 2" << std::endl;
+		if (this->menu_manager.processEvents(this->input_store)) {
+			data->window.close();
+			return;
+		}
 		this->menu_manager.clearWindows();
-		std::cout << "coucou 3" << std::endl;
 
 		data->update();
 		data->draw();
-		std::cout << "coucou 4" << std::endl;
 		this->menu_manager.draw();
-		std::cout << "coucou 5" << std::endl;
 		data->window.display();
 	}
 }

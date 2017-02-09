@@ -14,10 +14,11 @@ public:
 	~MenuManager();
 
 public:
-	void	processEvents(InputStorage &);
+	bool	processEvents(InputStorage &);
 	void	clearWindows();
 	bool	resetWindows();
 	void	draw();
+	bool	doClose() const;
 
 public:
 	std::list<ABasicElement *>	_menu_elements;

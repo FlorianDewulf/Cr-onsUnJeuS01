@@ -10,7 +10,7 @@ MenuManager::~MenuManager()
 {
 }
 
-void MenuManager::processEvents(InputStorage &input_store)
+bool MenuManager::processEvents(InputStorage &input_store)
 {
 	std::queue<sf::Event>	&key_list		= input_store.getKeyEvents();
 	std::queue<sf::Event>	&click_list		= input_store.getClickEvents();
@@ -22,33 +22,56 @@ void MenuManager::processEvents(InputStorage &input_store)
 
 			// For the Mouse
 			if ((*it)->click(e)) {
+				ABasicElement *tmp = *it;
+
 				this->_already_process.push_back((*it));
 				it = this->_menu_elements.erase(it);
 
 				click_list.pop();
+
+				if (tmp->doClose()) {
+					return true;
+				}
+
+				continue;
 			}
-		} else if (key_list.size() && (*it)->isInputable()) {
-			sf::Event e = key_list.front();
+		}
+		if (key_list.size() && (*it)->isInputable()) {
+			sf::Event		e = key_list.front();
 
 			// For the Input
 			if ((*it)->input(e)) {
+				ABasicElement	*tmp = *it;
+
 				this->_already_process.push_back((*it));
 				it = this->_menu_elements.erase(it);
 
 				key_list.pop();
+
+				if (tmp->doClose()) {
+					return true;
+				}
+				continue;
 			}
-		} else if ((*it)->isScrollable() && scroll_event) {
+		}
+		if ((*it)->isScrollable() && scroll_event) {
 			// For the Scroll
 			if ((*it)->scroll(*scroll_event)) {
 				this->_already_process.push_back((*it));
 				it = this->_menu_elements.erase(it);
 
 				scroll_event = NULL;
+				continue;
 			}
-		} else {
-			++it;
 		}
+		
+		++it;
 	}
+
+	while (key_list.size())		{ key_list.pop();	}
+	while (click_list.size())	{ click_list.pop(); }
+
+	return false;
 }
 
 void MenuManager::clearWindows()
@@ -57,6 +80,7 @@ void MenuManager::clearWindows()
 		if ((*it)->isWindow() && dynamic_cast<AWindow *>(*it)->isDeletable()) {
 			delete (*it);
 			it = this->_already_process.erase(it);
+		} else {
 			++it;
 		}
 	}

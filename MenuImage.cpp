@@ -15,6 +15,7 @@ MenuImage::MenuImage(sf::Texture *texture, const sf::Vector2f &position, const s
 
 MenuImage::~MenuImage()
 {
+	std::cout << "menu image delete" << std::endl;
 }
 
 void MenuImage::draw(sf::RenderTarget & target, sf::RenderStates states) const

@@ -23,6 +23,7 @@ public:
 	void			setClickHitbox(const sf::Vector2f position, const sf::Vector2f size);
 
 public:
+	bool			doClose() const;
 	virtual bool	isClickable() const;
 	virtual bool	isInputable() const;
 	virtual bool	isScrollable() const;
@@ -43,6 +44,7 @@ public:
 protected:
 	sf::Vector2i	_position;
 	sf::Vector2i	_size;
+	bool			_do_close;
 
 private:
 	Clickable		*_click_trigger;

@@ -19,6 +19,7 @@ MenuText::MenuText(const std::string text, const sf::Vector2i position, const sf
 
 MenuText::~MenuText()
 {
+	std::cout << "menu text delete" << std::endl;
 }
 
 void MenuText::changeText(const std::string &text)

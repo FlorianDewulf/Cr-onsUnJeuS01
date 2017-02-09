@@ -7,7 +7,7 @@ Inputable::Inputable()
 
 Inputable::~Inputable()
 {
-	std::cout << "ainputable" << std::endl;
+	std::cout << "inputable delete" << std::endl;
 }
 
 bool Inputable::isInputable() const

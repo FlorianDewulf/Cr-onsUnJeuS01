@@ -14,18 +14,18 @@ ClosedWindow::ClosedWindow(const sf::Vector2f position, const sf::Vector2f size)
 
 ClosedWindow::~ClosedWindow()
 {
-	std::cout << "awindow" << std::endl;
+	std::cout << "closed window delete" << std::endl;
 }
 
 bool ClosedWindow::isWindow() const
 {
 	return true;
 }
-
+/*
 bool ClosedWindow::isDeletable() const
 {
 	return this->_to_close == WINDOW_TO_DELETE;
-}
+}*/
 
 bool ClosedWindow::close(const sf::Event &event)
 {
